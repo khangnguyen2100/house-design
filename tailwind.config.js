@@ -7,8 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      ibm: ['IBM Plex Sans', 'sans-serif'],
-      noto: ['Noto Sans', 'sans-serif'],
+      montserrat: ['var(--font-montserrat)'],
     },
     extend: {
       backgroundImage: {
@@ -30,7 +29,7 @@ module.exports = {
       },
       spacing: {
         small: '640px',
-        medium: '977px',
+        medium: '976px',
         large: '1364px',
       },
       maxWidth: {
@@ -39,16 +38,21 @@ module.exports = {
         large: '1364px',
       },
       colors: {
+        primary: '#454545',
         typo: {
-          primary: '#222222',
-          secondary: '#7e8183',
+          1: '#0d0d0d',
+          2: '#4d4d4d',
+          3: '#555555',
+          4: '#6b6b6b',
+          5: '#939597',
         },
         sections: {
-          default: '#dae0e6',
-          paper: '#ffffff',
+          1: '#eeeeee',
+          2: '#f5f5f5',
+          3: '454545',
         },
       },
     },
   },
   plugins: [require('@tailwindcss/typography')],
-}
+};

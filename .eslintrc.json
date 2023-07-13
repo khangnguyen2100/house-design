@@ -46,6 +46,7 @@
       {
         "officialSorting": true
       }
-    ] // Follow the same ordering as the official plugin `prettier-plugin-tailwindcss`
+    ],
+    "tailwindcss/no-custom-classname": "off"
   }
 }
