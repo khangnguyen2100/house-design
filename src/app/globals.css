@@ -1,5 +1,4 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 html {
@@ -9,6 +8,7 @@ html {
 }
 body {
   font-family: "montserrat", sans-serif;
+  font-size: 16px;
   background-color: #fff;
   min-height: calc(100vh - 80px);
 }
