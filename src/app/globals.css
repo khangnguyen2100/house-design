@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
   background-color: #f0f0f0;
   margin: 40px;
 }
 body {
-  font-family: "montserrat", sans-serif;
+  font-family: 'montserrat', sans-serif;
   font-size: 16px;
   background-color: #fff;
   min-height: calc(100vh - 80px);
