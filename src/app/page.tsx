@@ -1,113 +1,252 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
+import { Banner } from '@/components';
+
+import Logo from '/public/Logo.png';
+import ServiceIMG from '/public/service.jpg';
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'>
-        <p className='fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30'>
-          Get started by editing&nbsp;
-          <code className='font-mono font-bold'>src/app/page.tsx</code>
-        </p>
-        <div className='fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none'>
-          <a
-            className='pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0'
-            href='https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            By{' '}
-            <Image
-              src='/vercel.svg'
-              alt='Vercel Logo'
-              className='dark:invert'
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      {' '}
+      <Banner></Banner>
+      <section className='sectionY mb-8'>
+        <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
+          <div className='fetured__img col-span-4'>
+            <Image src={Logo} alt='' className='max-w-[80%] xld:max-w-[60%]' />
+          </div>
+          <p className='col-span-8 text-justify text-xl leading-relaxed tracking-[0.5px] xld:text-base'>
+            Housedesign là một đơn vị chuyên thiết kế thi công nội thất hiện đại
+            thanh lịch. Dẫn đầu trong việc Mix&match các phong cách nội thất,
+            chúng tôi sáng tạo ra các không gian sống đậm chất riêng của gia
+            chủ. Thiết kế của Housedesign là sự kết hợp của những nền tảng chắc
+            chắn về kiến trúc và thiết kế, vừa mang thẩm mỹ hiện đại, vừa đơn
+            giản thanh lịch nhưng vẫn sang trọng tinh tế. Để đảm bảo chất lượng,
+            công ty cung cấp dịch vụ thi công nội thất trọn gói chỉnh chu trong
+            từng chi tiết, biến ý tưởng sáng tạo nhất thành hiện thực.
+          </p>
         </div>
-      </div>
-
-      <div className="before:bg-gradient-radial after:bg-gradient-conic relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className='relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert'
-          src='/next.svg'
-          alt='Next.js Logo'
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className='mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left'>
-        <a
-          href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </section>
+      <section className='sectionY mb-8'>
+        <div className='mx-auto grid max-w-large grid-cols-12 gap-x-8  xld:max-w-medium'>
+          <div className='fetured__img col-span-5'>
+            <Image
+              src={ServiceIMG}
+              alt=''
+              className='h-full max-h-[250px] w-full object-cover'
+            />
+          </div>
+          <div className='col-span-7 flex flex-col gap-y-5'>
+            <h3 className='text-2xl font-bold opacity-80'>
+              Thiết kế kiến trúc
+            </h3>
+            <p className='text-justify text-lg leading-relaxed tracking-[0.5px] xld:text-base'>
+              Để đem đến một công trình hoàn chỉnh nhất, mỗi nhân viên của House
+              Design luôn tỉ mỉ chú trọng đến từng chi tiết nhỏ nhất. Bên cạnh
+              đó, đảm bảo tiến độ làm việc, hoàn thành nhanh chóng và đúng hạn
+              với mức chi phí hợp lý. Chính những yếu tố này, đã làm nên một
+              thương hiệu House Design uy tín và được sự tín nhiệm của nhiều thế
+              hệ khách hàng.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className='sectionY mb-8'>
+        <div className='mx-auto max-w-large xld:max-w-medium'>
+          <h3 className='pb-8 text-center text-3xl font-semibold'>
+            Dự án của Housedesign
+          </h3>
+          <div className='grid grid-cols-3 gap-5 pb-8'>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+            <div className='group relative'>
+              <Link href='/a'>
+                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <p className='text-center text-base font-bold text-white'>
+                    Thiết kế Villa Quận 12
+                  </p>
+                </div>
+                <Image
+                  src='/house.jpg'
+                  alt=''
+                  width={300}
+                  height={300}
+                  className='w-full'
+                ></Image>
+              </Link>
+            </div>
+          </div>
+          <div className='flex justify-center gap-x-10'>
+            <button className='bg-black px-2 py-3 text-sm text-white'>
+              <Link href={'/'}>Xem thêm toàn bộ dự án</Link>
+            </button>
+            <button className='bg-black px-2 py-3 text-sm text-white'>
+              <Link href={'/'}>Xem các dự án thi công thực tế</Link>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className='sectionY mb-8'>
+        <h3 className='pb-8 text-center text-3xl font-semibold'>
+          Lý do nên chọn Housedesign
+        </h3>
+        <div className='mx-auto max-w-medium'>
+          <Image
+            alt=''
+            src='/Reason.png'
+            width={700}
+            height={220}
+            className='w-full object-cover'
+          ></Image>
+        </div>
+      </section>
+      <section className='sectionY mb-8'>
+        <div className='mx-auto max-w-large xld:max-w-medium'>
+          <h3 className='pb-8 text-center text-3xl font-semibold'>
+            Khách hàng và Housedesign
+          </h3>
+          <div className='flex flex-col items-center px-10 text-center'>
+            <p className='text-lg leading-relaxed tracking-[0.5px]'>
+              {
+                '"" Làm việc chuyên nghiệp, tư vấn tận tâm, chất lượng. Đặc biệt cảm ơn Mr Tùng, Mr Hậu và Ms Loan đã nhiệt tình tư vấn. "" '
+              }
+            </p>
+            <Image
+              alt=''
+              src={'/vu-nguyen-thuy-dung.jpg'}
+              width={100}
+              height={100}
+              className='mb-10 mt-6 rounded-full'
+            ></Image>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
