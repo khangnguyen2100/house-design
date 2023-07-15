@@ -8,7 +8,7 @@ import { menuItems } from '@/constants';
 
 function Nav() {
   return (
-    <header className='absolute top-5 flex h-[40px] w-full items-center justify-between overflow-hidden px-4'>
+    <header className='absolute left-1/2 top-20 z-10 flex h-[40px] w-full max-w-[1460px] -translate-x-1/2 items-center justify-between overflow-hidden px-4'>
       <div className='logo z-10 h-10 cursor-pointer'>
         <Link href='/' className=''>
           <Image src={Logo} alt='' className='h-full w-auto' />

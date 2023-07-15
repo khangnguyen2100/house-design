@@ -1,19 +1,19 @@
 'use client';
-import React from 'react';
+import { Button, Col, Row } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, Col, Row } from 'antd';
 
 import { Banner } from '@/components';
 
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
 
-import { productsMock } from '@/constants';
+import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
+import { productsMock } from '@/constants';
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Banner></Banner>
       <section className='sectionY mb-8'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
@@ -275,6 +275,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

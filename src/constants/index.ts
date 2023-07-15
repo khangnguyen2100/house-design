@@ -8,24 +8,8 @@ export const menuItems = [
     link: '/projects',
   },
   {
-    title: 'Thiết kế nội thất',
-    link: '/thiet-ke-noi-that',
-  },
-  {
-    title: 'Phong cách thiết kế',
-    link: '/phong-cach-thiet-ke',
-  },
-  {
-    title: 'Blog',
-    link: '/blog',
-  },
-  {
-    title: 'Decor Shop',
-    link: '/decor-shop',
-  },
-  {
-    title: 'Giới thiệu',
-    link: '/gioi-thieu',
+    title: 'Sản phẩm',
+    link: '/products',
   },
   {
     title: 'Liên hệ',

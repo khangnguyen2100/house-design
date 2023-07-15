@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Layout from '@/components/Layout/Layout';
 
 export const metadata: Metadata = {
-  title: 'Sản phẩm',
+  title: 'Dự án',
 };
 
 export default function RootLayout({
