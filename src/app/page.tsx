@@ -1,15 +1,19 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button, Col, Row } from 'antd';
 
 import { Banner } from '@/components';
 
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
+
+import { productsMock } from '@/constants';
+import ProductItem from '@/components/Products/ProductItem';
 export default function Home() {
   return (
     <>
-      {' '}
       <Banner></Banner>
       <section className='sectionY mb-8'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
@@ -23,7 +27,7 @@ export default function Home() {
             chủ. Thiết kế của Housedesign là sự kết hợp của những nền tảng chắc
             chắn về kiến trúc và thiết kế, vừa mang thẩm mỹ hiện đại, vừa đơn
             giản thanh lịch nhưng vẫn sang trọng tinh tế. Để đảm bảo chất lượng,
-            công ty cung cấp dịch vụ thi công nội thất trọn gói chỉnh chu trong
+            công ty cung cấp dịch vụ thi công nội thất trọn gói ch ỉnh chu trong
             từng chi tiết, biến ý tưởng sáng tạo nhất thành hiện thực.
           </p>
         </div>
@@ -207,7 +211,7 @@ export default function Home() {
             <button className='bg-black px-2 py-3 text-sm text-white'>
               <Link href={'/'}>Xem thêm toàn bộ dự án</Link>
             </button>
-            <button className='bg-black px-2 py-3 text-sm text-white'>
+            <button className='bg-black px-2 py-3 text-sm font-medium text-white'>
               <Link href={'/'}>Xem các dự án thi công thực tế</Link>
             </button>
           </div>
@@ -223,7 +227,7 @@ export default function Home() {
             src='/Reason.png'
             width={700}
             height={220}
-            className='w-full object-cover'
+            className='h-full w-full object-cover'
           ></Image>
         </div>
       </section>
@@ -248,6 +252,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className='sectionY mb-8'>
+        <div className='mx-auto max-w-large xld:max-w-medium'>
+          <Row className='mt-5'>
+            {productsMock.slice(0, 8).map((product, i) => (
+              <Col
+                className='gutter-row'
+                xs={{ span: 24 }}
+                md={{ span: 12 }}
+                lg={{ span: 8 }}
+                xl={{ span: 6 }}
+                key={i}
+              >
+                <ProductItem {...product} />
+              </Col>
+            ))}
+          </Row>
+          <div className='text-center'>
+            <Button type='primary' size='large' href='/products'>
+              Xem thêm
+            </Button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
