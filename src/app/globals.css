@@ -6,7 +6,16 @@
   body {
   @apply border-40 border-transparent bg-[#f1f1f1] font-montserrat
   }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f0f0f0;
+  margin: 40px;
 @layer components{
   .banner{
     height: calc(100vh - 80px);
@@ -14,4 +23,14 @@
   .sectionY{
     @apply bg-white py-16
   }
+}
+body {
+  font-family: 'montserrat', sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+  min-height: calc(100vh - 80px);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
