@@ -19,7 +19,7 @@
         "useTabs": false,
         "printWidth": 80,
         "jsxSingleQuote": true,
-        "endOfLine": "lf",
+        "endOfLine": "crlf",
         "bracketSpacing": true,
         "proseWrap": "preserve",
         "bracketSameLine": false
