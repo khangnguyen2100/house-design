@@ -2,7 +2,7 @@ import React from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-import { data } from 'src/data/data.js';
+import { userData } from '@/constants';
 
 const orders = () => {
   return (
@@ -20,7 +20,7 @@ const orders = () => {
             <span className='hidden sm:grid'>Method</span>
           </div>
           <ul>
-            {data.map((order, id) => (
+            {userData.map((order, id) => (
               <li
                 key={id}
                 className='my-3 grid cursor-pointer grid-cols-2 items-center justify-between rounded-lg bg-gray-50 p-2 hover:bg-gray-100 sm:grid-cols-3 md:grid-cols-4'

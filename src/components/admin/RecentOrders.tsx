@@ -1,14 +1,14 @@
 import React from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
 
-import { data } from 'src/data/data.js';
+import { userData } from '@/constants';
 
 const RecentOrders = () => {
   return (
     <div className='relative col-span-1 m-auto h-[50vh] w-full overflow-scroll rounded-lg border bg-white p-4 lg:h-[70vh]'>
       <h1>Recent Orders </h1>
       <ul>
-        {data.map((order, id) => (
+        {userData.map((order, id) => (
           <li
             key={id}
             className='my-3 flex cursor-pointer items-center rounded-lg bg-gray-50 p-2 hover:bg-gray-100'

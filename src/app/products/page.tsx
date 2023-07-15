@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: 'Sản phẩm',
 };
 
-
 const Products = () => {
   return (
     <div className='flex min-h-screen w-full flex-col items-center'>

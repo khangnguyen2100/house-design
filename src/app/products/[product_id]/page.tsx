@@ -1,8 +1,7 @@
 import NotFound from '@/components/ProductDetail/NotFound';
 import ProductDetail from '@/components/ProductDetail/ProductDetail';
 import RelatedProducts from '@/components/ProductDetail/RelatedProducts';
-
-import { productsMock } from '../page';
+import { productsMock } from '@/constants';
 
 type PropsType = {
   params: { product_id: string };
