@@ -19,9 +19,20 @@ ChartJS.register(
   Legend,
 );
 
+interface chartDataProps {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    borderColor: string;
+    backgroundColor: string;
+  }[];
+}
+
 const BarChart = () => {
-  const [chartData, setChartData] = useState({
+  const [chartData, setChartData] = useState<chartDataProps>({
     datasets: [],
+    labels: [],
   });
 
   const [chartOptions, setChartOptions] = useState({});
