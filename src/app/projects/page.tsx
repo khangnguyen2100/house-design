@@ -32,14 +32,14 @@ function Projects() {
           );
         })}
       </div>
-      <div className='mx-auto '>
+      <div className='mx-auto max-w-large'>
         <Masonry>
           {projectsItems.map((project, index) => {
             return (
               <Link
                 key={index}
                 className='hover:opacity-75! group h-auto w-2/6 cursor-pointer p-2 opacity-100 transition-opacity duration-300 ease-in-out'
-                href={'/'}
+                href={`/projects/${project.id}`}
               >
                 <Image
                   src={project.img}

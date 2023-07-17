@@ -4,13 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button, Col, Row } from 'antd';
 
-import { Banner } from '@/components';
+
 
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
 
 import { productsMock } from '@/constants';
 import ProductItem from '@/components/Products/ProductItem';
+import Banner from '@/components/Banner';
 export default function Home() {
   return (
     <>
@@ -57,7 +58,7 @@ export default function Home() {
         </div>
       </section>
       <section className='sectionY mb-8'>
-        <div className='mx-auto max-w-large xld:max-w-medium'>
+        <div className='mx-auto max-w-large'>
           <h3 className='pb-8 text-center text-3xl font-semibold'>
             Dự án của Housedesign
           </h3>
@@ -252,7 +253,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className='sectionY mb-8'>
+      <section className='sectionY mb-8'>
         <div className='mx-auto max-w-large xld:max-w-medium'>
           <Row className='mt-5'>
             {productsMock.slice(0, 8).map((product, i) => (
@@ -274,7 +275,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
