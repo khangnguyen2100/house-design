@@ -274,7 +274,13 @@ export const footerInfo = [
   {
     title: 'Housedesign',
     type: 'logo',
-    info: { width: 320, height: 175, src: '0967000236' },
+    info: [
+      {
+        width: 320,
+        height: 175,
+        src: 'https://housedesign.vn/wp-content/uploads/2020/04/232Model.png',
+      },
+    ],
   },
   {
     title: 'Chi nhánh Hà Nội',
