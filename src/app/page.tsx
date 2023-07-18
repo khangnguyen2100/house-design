@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Layout>
       <Banner></Banner>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
           <div className='fetured__img col-span-4'>
             <Image src={Logo} alt='' className='max-w-[80%]' />
@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 gap-x-8  xld:max-w-medium'>
           <div className='fetured__img col-span-5'>
             <Image
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto max-w-large'>
           <h3 className='pb-8 text-center text-3xl font-semibold'>
             Dự án của Housedesign
@@ -217,7 +217,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <h3 className='pb-8 text-center text-3xl font-semibold'>
           Lý do nên chọn Housedesign
         </h3>
@@ -231,7 +231,7 @@ export default function Home() {
           ></Image>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto max-w-large xld:max-w-medium'>
           <h3 className='pb-8 text-center text-3xl font-semibold'>
             Khách hàng và Housedesign
@@ -252,7 +252,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto max-w-large xld:max-w-medium'>
           <Row className='mt-5'>
             {productsMock.slice(0, 8).map((product, i) => (

@@ -33,11 +33,12 @@ module.exports = {
         large: "1364px",
       },
       maxWidth: {
-        small: '640px',
-        medium: '976px',
-        large: '1320px',
+        small: "640px",
+        medium: "976px",
+        large: "1320px",
       },
       colors: {
+        lightBLack: "#7F7E7E",
         primary: "#0d0d0d",
         typo: {
           1: "#0d0d0d",
@@ -60,5 +61,5 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require("@tailwindcss/typography")],
 };
