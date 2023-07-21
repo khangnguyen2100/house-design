@@ -3,22 +3,22 @@ import { Button, Col, Row } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Banner } from '@/components';
-
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
 
 import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
 import { productsMock } from '@/constants';
+import Banner from '@/components/Banner';
+
 export default function Home() {
   return (
     <Layout>
       <Banner></Banner>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
           <div className='fetured__img col-span-4'>
-            <Image src={Logo} alt='' className='max-w-[80%] xld:max-w-[60%]' />
+            <Image src={Logo} alt='' className='max-w-[80%]' />
           </div>
           <p className='col-span-8 text-justify text-xl leading-relaxed tracking-[0.5px] xld:text-base'>
             Housedesign là một đơn vị chuyên thiết kế thi công nội thất hiện đại
@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 gap-x-8  xld:max-w-medium'>
           <div className='fetured__img col-span-5'>
             <Image
@@ -56,8 +56,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='sectionY mb-8'>
-        <div className='mx-auto max-w-large xld:max-w-medium'>
+      <section className='sectionY'>
+        <div className='mx-auto max-w-large'>
           <h3 className='pb-8 text-center text-3xl font-semibold'>
             Dự án của Housedesign
           </h3>
@@ -217,7 +217,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <h3 className='pb-8 text-center text-3xl font-semibold'>
           Lý do nên chọn Housedesign
         </h3>
@@ -231,7 +231,7 @@ export default function Home() {
           ></Image>
         </div>
       </section>
-      <section className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto max-w-large xld:max-w-medium'>
           <h3 className='pb-8 text-center text-3xl font-semibold'>
             Khách hàng và Housedesign
@@ -252,7 +252,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className='sectionY mb-8'>
+      <section className='sectionY'>
         <div className='mx-auto max-w-large xld:max-w-medium'>
           <Row className='mt-5'>
             {productsMock.slice(0, 8).map((product, i) => (
@@ -274,7 +274,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

@@ -121,7 +121,7 @@ export const productsMock = [
     salePrice: 1019000,
     image:
       'https://nhaxinh.com/wp-content/uploads/2022/06/ARMCHAIR-PEONY-FLOWER-84685K-4-300x200.jpg',
-    description: 'A small table to place beside your sofa or bed.',
+    description: 'A small table to info beside your sofa or bed.',
     category: 'table',
     createdAt: '2021-09-01T00:00:00.000Z',
   },
@@ -242,6 +242,59 @@ export const projectsItems = [
     id: 12,
     title: 'Căn hộ The View- Tối giản hiện đại',
     img: 'https://housedesign.vn/wp-content/uploads/2022/09/khach-bep-9-800x534.jpg',
+  },
+];
+export const footerInfo = [
+  {
+    title: 'Văn phòng Hồ Chí Minh',
+    type: 'text',
+    info: [
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/location.png',
+        text: '17 Trúc Đường, Thảo Điền, TP. Thủ Đức, TP. Hồ Chí Minh',
+      },
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/house.png',
+        text: 'Xưởng sản xuất: 178 Long Thuận, Long Phước, TP. Thủ Đức, TP. HCM',
+      },
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/supporter.png',
+        text: '0973990339',
+      },
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/supporter.png',
+        text: '02862740393 (Đối tác)',
+      },
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/email.png',
+        text: 'info@housedesign.vn',
+      },
+    ],
+  },
+  {
+    title: 'Housedesign',
+    type: 'logo',
+    info: [
+      {
+        width: 320,
+        height: 175,
+        src: 'https://housedesign.vn/wp-content/uploads/2020/04/232Model.png',
+      },
+    ],
+  },
+  {
+    title: 'Chi nhánh Hà Nội',
+    type: 'text',
+    info: [
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/location.png',
+        text: 'Lầu 2, 18 Đường 18M, Khu đô thị Mỗ Lao, Quận Hà Đông, Hà Nội',
+      },
+      {
+        icon: 'https://housedesign.vn/wp-content/themes/pond-child/assets/images/house.png',
+        text: '0967000236',
+      },
+    ],
   },
 ];
 

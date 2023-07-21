@@ -1,8 +1,9 @@
+import React from 'react';
 import Link from 'next/link';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { RxDashboard, RxPerson, RxSketchLogo } from 'react-icons/rx';
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex'>
       <div className='fixed flex h-screen w-20 flex-col justify-between border-r-[1px] bg-white p-4'>
