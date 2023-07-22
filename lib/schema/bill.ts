@@ -21,5 +21,5 @@ const billSchema = new Schema(
   },
 );
 
-const Bill = mongoose.model('Bill', billSchema);
+const Bill = mongoose.models.Bill || mongoose.model('Bill', billSchema);
 export default Bill;
