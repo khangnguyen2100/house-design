@@ -197,7 +197,7 @@ export const projectsLinks = [
   { id: 8, title: 'VĂN PHÒNG', link: '/van-phong' },
   { id: 9, title: 'DỰ ÁN THI CÔNG', link: '/du-an-thi-cong' },
 ];
-export const projectsItems = [
+export const projectItems = [
   {
     id: 1,
     title: 'Nhà Phố Long Biên',

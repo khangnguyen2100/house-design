@@ -4,7 +4,7 @@ import BannerIMG from '/public/Banner.jpg';
 function Banner() {
   return (
     <section className='banner relative overflow-hidden bg-white'>
-      <div className='overlay absolute inset-0 w-full rounded-lg bg-gradient-to-t from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.1)] before:h-full'></div>
+      <div className='bg-overlay'></div>
       <div className='h-full w-full'>
         <Image
           src={BannerIMG}

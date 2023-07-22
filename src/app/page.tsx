@@ -10,11 +10,13 @@ import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
 import { productsMock } from '@/constants';
 import Banner from '@/components/Banner';
+import ExampleClientComponent from '@/components/common/Breadcrumbs/Breadcrumbs';
 
 export default function Home() {
   return (
     <Layout>
       <Banner></Banner>
+
       <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
           <div className='fetured__img col-span-4'>
@@ -64,7 +66,7 @@ export default function Home() {
           <div className='grid grid-cols-3 gap-5 pb-8'>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -80,7 +82,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -96,7 +98,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -112,7 +114,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -128,7 +130,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -144,7 +146,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -160,7 +162,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>
@@ -176,23 +178,7 @@ export default function Home() {
             </div>
             <div className='group relative'>
               <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
-                  <p className='text-center text-base font-bold text-white'>
-                    Thiết kế Villa Quận 12
-                  </p>
-                </div>
-                <Image
-                  src='/house.jpg'
-                  alt=''
-                  width={300}
-                  height={300}
-                  className='w-full'
-                ></Image>
-              </Link>
-            </div>
-            <div className='group relative'>
-              <Link href='/a'>
-                <div className='absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                <div className='transition-opacity-300ms absolute inset-0 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.21)] opacity-0 group-hover:opacity-100'>
                   <p className='text-center text-base font-bold text-white'>
                     Thiết kế Villa Quận 12
                   </p>

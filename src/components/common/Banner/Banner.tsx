@@ -7,6 +7,7 @@ type Props = {
   title: string;
   height: 'small' | 'medium' | 'large';
   overlay?: boolean;
+  contentCenter?: boolean;
 };
 
 const heightLookup: Record<string, string> = {

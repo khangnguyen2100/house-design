@@ -1,16 +1,20 @@
 'use client';
 import Link from 'next/link';
-import { Masonry } from 'react-masonry/dist';
 import Image from 'next/image';
+import Masonry from '@mui/lab/Masonry';
 
 import Banner from '@/components/common/Banner/Banner';
 
 import ProductBanner from '/public/images/banner/product-banner.jpg';
 
-import { projectsItems, projectsLinks } from '@/constants';
+import { projectItems, projectsLinks } from '@/constants';
+import Breadcrumbs from '@/components/common/Breadcrumbs/Breadcrumbs';
+
+
 function Projects() {
   return (
     <>
+      <Breadcrumbs></Breadcrumbs>
       <div className='mb-8 flex w-full flex-col items-center'>
         <Banner
           background={ProductBanner}
@@ -34,12 +38,12 @@ function Projects() {
           })}
         </div>
         <div className='mx-auto max-w-large'>
-          <Masonry>
-            {projectsItems.map((project, index) => {
+          <Masonry spacing={3} columns={3}>
+            {projectItems.map((project, index) => {
               return (
                 <Link
                   key={index}
-                  className='hover:opacity-75! group h-auto w-2/6 cursor-pointer p-2 opacity-100 transition-opacity duration-300 ease-in-out'
+                  className='hover:opacity-75! transition-opacity-300ms group relative h-auto w-2/6  cursor-pointer opacity-100'
                   href={`/projects/${project.id}`}
                 >
                   <Image
@@ -49,7 +53,7 @@ function Projects() {
                     height={500}
                     className='h-full w-full object-cover'
                   ></Image>
-                  <div className='absolute inset-0 z-10 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100'>
+                  <div className='bg-overlay transition-opacity-300ms z-10 flex h-full w-full items-center justify-center opacity-0 group-hover:opacity-100'>
                     <p className='text-center text-xl font-bold text-white'>
                       {project.title}
                     </p>
