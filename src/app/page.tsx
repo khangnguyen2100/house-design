@@ -5,18 +5,22 @@ import Link from 'next/link';
 
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
+import BannerIMG from '/public/Banner.jpg';
 
 import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
 import { productsMock } from '@/constants';
-import Banner from '@/components/Banner';
-import ExampleClientComponent from '@/components/common/Breadcrumbs/Breadcrumbs';
+import BannerWithButton from '@/components/common/Banner/BannerWithButton';
 
 export default function Home() {
   return (
     <Layout>
-      <Banner></Banner>
-
+      <BannerWithButton
+        background={BannerIMG}
+        title='House Design'
+        subTitle='Thiết kế thi công nội thất hiện đại'
+        buttonText='Liên hệ'
+      ></BannerWithButton>
       <section className='sectionY'>
         <div className='mx-auto grid max-w-large grid-cols-12 items-center  justify-center gap-x-4 xld:max-w-medium'>
           <div className='fetured__img col-span-4'>

@@ -1,8 +1,7 @@
-import { useRouter } from 'next/navigation';
 
 function Breadcrumbs() {
-  const router = useRouter();
-  console.log(router);
+  // const router = useRouter();
+  // console.log(router);
 
   return <></>;
 }

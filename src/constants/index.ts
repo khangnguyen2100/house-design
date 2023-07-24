@@ -202,48 +202,58 @@ export const projectItems = [
     id: 1,
     title: 'Nhà Phố Long Biên',
     img: 'https://housedesign.vn/wp-content/uploads/2023/06/khach-bep-11-1-800x600.jpg',
+    slug: 'nha-pho-long-bien',
   },
   {
     id: 2,
     title: 'Showroom, Shop, Văn Phòng',
     img: 'https://housedesign.vn/wp-content/uploads/2022/12/housedesign-coffee-Binh-Thanh-3-800x500.jpg',
+    slug: 'showroom-shop-van-phong',
   },
   {
     id: 3,
     title: 'Cà Phê phong cách Wabisabi Việt',
     img: 'https://housedesign.vn/wp-content/uploads/2022/12/housedesign-coffee-Binh-Thanh-3-800x500.jpg',
+    slug: 'ca-phe-phong-cach-wabisabi-viet',
   },
   {
     id: 4,
     title: 'Thi công thực tế- Duplex Sadora Quận 2',
     img: 'https://housedesign.vn/wp-content/uploads/2022/10/housedesign-sadora-19-800x533.jpg',
+    slug: 'thi-cong-thuc-te-duplex-sadora-quan-2',
   },
   {
     id: 5,
     title: 'Thi công thực tế căn hộ Hinode tower',
     img: 'https://housedesign.vn/wp-content/uploads/2022/10/Housedesign-Hinode-tower-A-13-800x533.jpg',
+    slug: 'thi-cong-thuc-te-can-ho-hinode-tower',
   },
   {
     id: 6,
     title: 'Thi công thực tế Villa Vinhome Quận 9',
     img: 'https://housedesign.vn/wp-content/uploads/2022/10/housedesign-vinhome-p-ngu-1-800x775.jpg',
+    slug: 'thi-cong-thuc-te-villa-vinhome-quan-9',
   },
   {
     id: 10,
     title: 'Vinhome Central Park- Cải tạo',
     img: 'https://housedesign.vn/wp-content/uploads/2022/09/p-khach-4-800x615.jpg',
+    slug: 'vinhome-central-park-cai-tao',
   },
   {
     id: 11,
     title: 'The MarQ- Đẳng cấp thời thượng',
     img: 'https://housedesign.vn/wp-content/uploads/2022/09/housedesign-the-Marq-w-1-800x667.jpg',
+    slug: 'the-marq-dang-cap-thoi-thuong',
   },
   {
     id: 12,
     title: 'Căn hộ The View- Tối giản hiện đại',
     img: 'https://housedesign.vn/wp-content/uploads/2022/09/khach-bep-9-800x534.jpg',
+    slug: 'can-ho-the-view-toi-gian-hien-dai',
   },
 ];
+
 export const footerInfo = [
   {
     title: 'Văn phòng Hồ Chí Minh',
