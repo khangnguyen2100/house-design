@@ -1,11 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 body {
   @apply font-montserrat text-base;
 }
@@ -14,6 +9,11 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  font-family: inherit;
 }
 .border {
   border-width: 1px;

@@ -10,6 +10,7 @@ import ProductBanner from '/public/images/banner/product-banner.jpg';
 import { projectItems } from '@/constants';
 import { projectItem } from '@/Types/Type';
 import MansonryLayout from '@/components/Layout/MansonryLayout';
+import Button from '@/components/common/Button/Button';
 
 type PropsType = {
   params: { project_slug: string };
@@ -24,7 +25,7 @@ const Item = (project: projectItem, index: number) => {
   return (
     <Link
       key={index}
-      className='hover:opacity-75! transition-opacity-300ms group relative h-auto   cursor-pointer opacity-100'
+      className='hover:opacity-75! transition-opacity-300ms group relative block cursor-pointer opacity-100'
       href={`/projects/${project.slug}`}
     >
       <Image
@@ -91,8 +92,31 @@ function ProjectDetailPage({ params }: PropsType) {
             itemRender={Item}
           ></MansonryLayout>
         </div>
-        <div className='mx-auto mt-24 max-w-medium border border-white p-2'>
-          ewqewqew
+        <div className='mx-auto mt-24 max-w-small border-b border-black'></div>
+        <div className='mx-auto grid max-w-large grid-cols-12 gap-8 py-6'>
+          <div className='col-span-7 flex flex-col justify-center gap-y-2 mdd:col-span-12'>
+            <h4 className='text-xl'>
+              HOUSEDESIGN - Thiết kế thi công nội thất hiện đại
+            </h4>
+            <p className='text-lg'>
+              Liên hệ ngay với chúng tôi để thực hiện dự án của bạn
+            </p>
+            <Button
+              text='Liên hệ'
+              type='button'
+              className='inline-block bg-black px-4 py-2 text-sm text-white'
+              href='/'
+            ></Button>
+          </div>
+          <div className='relative col-span-5 text-right mdd:col-span-12'>
+            <Image
+              src='https://housedesign.vn/images/banner-lien-he.png'
+              alt=''
+              className='w-full'
+              width='482'
+              height='211'
+            ></Image>
+          </div>
         </div>
       </div>
     </>
