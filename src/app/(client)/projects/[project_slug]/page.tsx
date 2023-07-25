@@ -1,11 +1,15 @@
+'use client';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Banner from '@/components/common/Banner/Banner';
 
 import ProductBanner from '/public/images/banner/product-banner.jpg';
 
 import { projectItems } from '@/constants';
+import { projectItem } from '@/Types/Type';
+import MansonryLayout from '@/components/Layout/MansonryLayout';
 
 type PropsType = {
   params: { project_slug: string };
@@ -16,6 +20,28 @@ export async function generateStaticParams() {
     project_slug: project.slug,
   }));
 }
+const Item = (project: projectItem, index: number) => {
+  return (
+    <Link
+      key={index}
+      className='hover:opacity-75! transition-opacity-300ms group relative h-auto   cursor-pointer opacity-100'
+      href={`/projects/${project.slug}`}
+    >
+      <Image
+        src={project.img}
+        alt={project.title}
+        width={500}
+        height={500}
+        className='h-full w-full object-cover'
+      ></Image>
+      <div className='bg-overlay transition-opacity-300ms z-10 flex h-full w-full items-center justify-center opacity-0 group-hover:opacity-100'>
+        <p className='text-center text-xl font-bold text-white'>
+          {project.title}
+        </p>
+      </div>
+    </Link>
+  );
+};
 function ProjectDetailPage({ params }: PropsType) {
   const { project_slug } = params;
 
@@ -45,7 +71,7 @@ function ProjectDetailPage({ params }: PropsType) {
               Tên dự án
             </Link>
           </Breadcrumbs>
-          <h4 className=' mt-24 text-center text-3xl font-normal uppercase tracking-[10px] text-[#0d0d0d]'>
+          <h4 className='mt-24 text-center text-3xl font-normal uppercase tracking-[10px] text-[#0d0d0d]'>
             nhà hàng chay ngũ sắc
           </h4>
           <div className='mt-24 text-base font-light'>
@@ -58,6 +84,15 @@ function ProjectDetailPage({ params }: PropsType) {
             cảm được chủ quán đặc biệt quan tâm đến. Cảm hứng đến từ không gian
             cảm xúc đến từ chất liệu.
           </div>
+        </div>
+        <div className='mx-auto mt-24 max-w-large'>
+          <MansonryLayout
+            itemArray={projectItems}
+            itemRender={Item}
+          ></MansonryLayout>
+        </div>
+        <div className='mx-auto mt-24 max-w-medium border border-white p-2'>
+          ewqewqew
         </div>
       </div>
     </>

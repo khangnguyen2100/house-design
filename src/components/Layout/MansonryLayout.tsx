@@ -7,15 +7,15 @@ type Props<T> = {
   itemArray: T[];
   itemRender: (item: T, index: number) => JSX.Element;
 };
-function MasonryLayout<T>(props: Props<T>) {
+function MansonryLayout<T>(props: Props<T>) {
   const { spacing = 3, columns = 3, itemArray, itemRender } = props;
   return (
     <Masonry spacing={spacing} columns={columns}>
       {itemArray.map((item: T, index) => {
-        return <>{itemRender(item, index)}</>;
+        return <div key={index}>{itemRender(item, index)}</div>;
       })}
     </Masonry>
   );
 }
 
-export default MasonryLayout;
+export default MansonryLayout;

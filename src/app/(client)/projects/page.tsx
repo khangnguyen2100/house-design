@@ -7,13 +7,12 @@ import Banner from '@/components/common/Banner/Banner';
 import ProductBanner from '/public/images/banner/product-banner.jpg';
 
 import { projectItems, projectsLinks } from '@/constants';
-import MasonryLayout from '@/components/Layout/MansonryLayout';
+import MansonryLayout from '@/components/Layout/MansonryLayout';
 import { projectItem } from '@/Types/Type';
 const Item = (project: projectItem, index: number) => {
   return (
     <Link
-      key={index}
-      className='hover:opacity-75! transition-opacity-300ms group relative h-auto w-2/6  cursor-pointer opacity-100'
+      className='hover:opacity-75! transition-opacity-300ms group relative block h-auto cursor-pointer opacity-100'
       href={`/projects/${project.slug}`}
     >
       <Image
@@ -57,10 +56,10 @@ function Projects() {
           })}
         </div>
         <div className='mx-auto max-w-large'>
-          <MasonryLayout
+          <MansonryLayout
             itemArray={projectItems}
             itemRender={Item}
-          ></MasonryLayout>
+          ></MansonryLayout>
         </div>
       </div>
     </>
