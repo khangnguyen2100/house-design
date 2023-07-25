@@ -8,6 +8,16 @@
 }
 body {
   @apply font-montserrat text-base;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .border {
+    border-width: 1px;
+    border-style: solid;
+  }
 }
 html {
   scroll-behavior: smooth;
@@ -16,6 +26,29 @@ html {
 .navbar {
   width: calc(100% - 80px);
 }
+@layer utilities {
+  a {
+    @apply no-underline text-white font-montserrat;
+  }
+  .underlineLink {
+    @apply relative;
+  }
+  .slashAfter:last-child::after {
+    display: none;
+  }
+  .slashAfter::after {
+    content: '/';
+    padding: 0 10px;
+    color: #fff;
+  }
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
 
 .sectionY {
   @apply bg-white py-16 mb-8;
@@ -41,6 +74,24 @@ a {
   }
   100% {
     transform: translateY(0%);
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease;
+  }
+
+  .underlineLink:after {
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-black transition-all duration-200 ease-in-out;
+    content: '';
+  }
+
+  .underlineLink:hover:after {
+    @apply w-full;
+  }
+  .bg-overlay {
+    @apply absolute inset-0 rounded-lg bg-gradient-to-t from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.1)];
+  }
+  .transition-opacity-300ms {
+    @apply transition-opacity duration-300 ease-in-out;
   }
 }
 
