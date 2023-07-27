@@ -3,16 +3,19 @@ import { Button, Col, Row } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import BannerIMG from '/public/Banner.jpg';
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
-import BannerIMG from '/public/Banner.jpg';
 
 import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
-import { productsMock } from '@/constants';
 import BannerWithButton from '@/components/common/Banner/BannerWithButton';
+import { productsMock } from '@/constants';
 
 export default function Home() {
+  // check user in client side
+  // const session = useSession();
+  // console.log('session:', session)
   return (
     <Layout>
       <BannerWithButton
