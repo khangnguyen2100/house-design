@@ -28,7 +28,6 @@ const ProductsList = (props: Props) => {
   const [productsData, setProductsData] = useState(products);
 
   const handleFiltersChange = (props: FilterChangeType) => {
-    console.log('props:', props);
     const { type, value } = props;
     setFilters(prev => ({
       ...prev,

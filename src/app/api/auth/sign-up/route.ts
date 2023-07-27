@@ -4,7 +4,6 @@ import connectDb from 'lib/config/db';
 import User from 'lib/schema/user';
 
 export async function POST(request: Request) {
-  console.log('request:', request);
   const body = await request.json();
   await connectDb();
   const user = await User.create(body);
