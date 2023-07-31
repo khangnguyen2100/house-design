@@ -5,6 +5,7 @@ import { Button, Divider, Rate } from 'antd';
 import Link from 'next/link';
 
 import { formatPrice } from '@/utils/product';
+import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 export type ProductType = {
   id: string;
   name: string;
@@ -18,6 +19,7 @@ export type ProductType = {
 };
 
 const ProductItem = (props: ProductType) => {
+  const { addToCart } = useCartContext();
   const { id, name, rate, price, salePrice, image } = props;
   return (
     <div className='group flex w-full flex-col items-center border border-solid border-transparent p-4 hover:border-[#DFDFE2]'>
@@ -46,9 +48,8 @@ const ProductItem = (props: ProductType) => {
         </div>
         {/* rate */}
         <Rate disabled defaultValue={rate} className='mb-5' />
-
         <div className='invisible mt-3 flex items-center justify-between opacity-0 transition-all group-hover:visible group-hover:opacity-100'>
-          <Button type='primary' size='large'>
+          <Button type='primary' size='large' onClick={() => addToCart(props)}>
             Thêm vào giỏ hàng
           </Button>
           <Button size='large'>

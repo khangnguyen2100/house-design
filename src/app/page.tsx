@@ -1,4 +1,5 @@
 'use client';
+
 import { Button, Col, Row } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,9 +14,6 @@ import BannerWithButton from '@/components/common/Banner/BannerWithButton';
 import { productsMock } from '@/constants';
 
 export default function Home() {
-  // check user in client side
-  // const session = useSession();
-  // console.log('session:', session)
   return (
     <Layout>
       <BannerWithButton

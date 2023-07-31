@@ -27,8 +27,8 @@ html {
 .navbar {
   width: calc(100% - 80px);
 }
-a {
-  @apply no-underline text-white font-montserrat;
+.cart_table {
+  @apply px-2 py-6 border-none;
 }
 .underlineLink {
   @apply relative;

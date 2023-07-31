@@ -15,6 +15,7 @@ export const menuItems = [
     title: 'Liên hệ',
     link: '/lien-he',
   },
+  { title: 'Đăng nhập', link: '/login' },
 ];
 export const productsMock = [
   {

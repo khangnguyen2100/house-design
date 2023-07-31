@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 
 import './globals.css';
+import { ReactNode } from 'react';
+
+import { CartContextProvider } from '@/contexts/Cart/CartContextProvider';
+
 import { NextAuthProvider } from './providers';
 
 const montserrat = Montserrat({
@@ -13,15 +17,13 @@ export const metadata: Metadata = {
   title: 'Home',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body className={`${montserrat.variable}`}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <CartContextProvider>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </CartContextProvider>
       </body>
     </html>
   );
