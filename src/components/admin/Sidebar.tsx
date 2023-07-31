@@ -1,8 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
+import { AiOutlineDashboard } from 'react-icons/ai';
+import { BiCategoryAlt } from 'react-icons/bi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
-import { RxDashboard, RxPerson, RxSketchLogo } from 'react-icons/rx';
-
+import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
+import { RxPerson, RxSketchLogo } from 'react-icons/rx';
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex'>
@@ -15,17 +17,27 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
           </Link>
           <span className='w-full border-b-[1px] border-gray-200 p-2'></span>
           <Link href='/admin'>
-            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
-              <RxDashboard size={20} />
+            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 text-typo-2 hover:bg-gray-200'>
+              <AiOutlineDashboard size={20} />
+            </div>
+          </Link>
+          <Link href='/admin/categories'>
+            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 text-typo-2 hover:bg-gray-200'>
+              <BiCategoryAlt size={20} />
+            </div>
+          </Link>
+          <Link href='/admin/products'>
+            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 text-typo-2 hover:bg-gray-200'>
+              <MdOutlineProductionQuantityLimits size={20} />
             </div>
           </Link>
           <Link href='/admin/customers'>
-            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
+            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 text-typo-2 hover:bg-gray-200'>
               <RxPerson size={20} />
             </div>
           </Link>
           <Link href='/admin/orders'>
-            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
+            <div className='my-4 inline-block cursor-pointer rounded-lg bg-gray-100 p-3 text-typo-2 hover:bg-gray-200'>
               <HiOutlineShoppingBag size={20} />
             </div>
           </Link>
