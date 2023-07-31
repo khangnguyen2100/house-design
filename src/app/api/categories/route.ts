@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import connectDb from 'lib/config/db';
 import Category from 'lib/schema/category';
+import Product from 'lib/schema/product';
 // create a new category
 export async function POST(request: Request) {
   const body = await request.json();
@@ -20,5 +21,17 @@ export async function POST(request: Request) {
 export async function GET() {
   await connectDb();
   const categories = await Category.find({});
-  return NextResponse.json(categories);
+  // get total products in category
+  const categoriesWithTotalProducts = await Promise.all(
+    categories.map(async category => {
+      const totalProducts = await Product.countDocuments({
+        category: category._id,
+      });
+      return {
+        ...category._doc,
+        totalProducts,
+      };
+    }),
+  );
+  return NextResponse.json(categoriesWithTotalProducts);
 }
