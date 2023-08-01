@@ -24,7 +24,13 @@ const userSchema = new Schema(
       },
     },
     name: String,
-    status: String,
+    status: {
+      type: String,
+      default: 'active',
+      enum: {
+        values: ['active', 'block'],
+      },
+    },
     phoneNumber: Number,
     address: String,
     avatar: String,
