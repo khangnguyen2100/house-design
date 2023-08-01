@@ -1,9 +1,12 @@
 import { Button, Col, Input, Row, Select } from 'antd';
 import Title from 'antd/es/typography/Title';
 
+import { CategoryProps } from '@/Types/Type';
+
 import { FilterChangeType, FilterType } from '../ProductsList';
 type Props = {
   filters: FilterType;
+  categories: CategoryProps[];
   // eslint-disable-next-line no-unused-vars
   onChange: (props: FilterChangeType) => void;
   onFilter: () => void;
@@ -16,16 +19,12 @@ const sortByOptions = [
   { value: 3, label: 'Giá cao đến thấp' },
   { value: 4, label: 'Giá thấp đến cao' },
 ];
-const categoryOptions = [
-  { value: 'chair', label: 'Ghế' },
-  { value: 'table', label: 'Bàn' },
-  { value: 'sofa', label: 'Sofa' },
-  { value: 'bed', label: 'Giường' },
-  { value: 'shelf', label: 'Kệ' },
-  { value: 'cabinet', label: 'Tủ' },
-];
 const FilterContainer = (props: Props) => {
-  const { filters, onChange, onFilter, onReset } = props;
+  const { filters, categories, onChange, onFilter, onReset } = props;
+  const transFormCategories = categories.map((item: CategoryProps) => ({
+    value: item._id,
+    label: item.name,
+  }));
   return (
     <Row className='m-7 w-full' gutter={16}>
       {/* price */}
@@ -50,7 +49,7 @@ const FilterContainer = (props: Props) => {
           placeholder='Chọn loại'
           onChange={e => onChange({ type: 'category', value: e })}
           value={filters.category || []}
-          options={categoryOptions}
+          options={transFormCategories}
         />
       </Col>
       {/* search */}

@@ -6,32 +6,22 @@ import Link from 'next/link';
 
 import { formatPrice } from '@/utils/product';
 import { useCartContext } from '@/contexts/Cart/CartContextProvider';
-export type ProductType = {
-  id: string;
-  name: string;
-  price: number;
-  salePrice: number;
-  image: string;
-  rate: number;
-  description: string;
-  category: string;
-  createdAt: string;
-};
+import { ProductProps } from '@/Types/Type';
 
-const ProductItem = (props: ProductType) => {
+const ProductItem = (props: ProductProps) => {
   const { addToCart } = useCartContext();
-  const { id, name, rate, price, salePrice, image } = props;
+  const { _id, name, rate, price, salePrice, thumbnail } = props;
   return (
     <div className='group flex w-full flex-col items-center border border-solid border-transparent p-4 hover:border-[#DFDFE2]'>
       <div className='h-[200px] w-full'>
-        <Image src={image} alt={name} width={296} height={200} />
+        <Image src={thumbnail} alt={name} width={296} height={200} />
       </div>
       <div className='flex w-full flex-col'>
         {/* info */}
         <div className='flex items-center justify-between'>
-          <h3 className='text-base'>
-            <Link href={`/products/${id}`}>{name}</Link>
-          </h3>
+          <Link href={`/products/${_id}`}>
+            <h3 className='text-base text-purple-600'>{name}</h3>
+          </Link>
 
           <Button
             type='text'
@@ -41,9 +31,11 @@ const ProductItem = (props: ProductType) => {
         <Divider />
         {/* price */}
         <div className='mb-2 flex w-full items-center justify-between'>
-          <p className='text-lg font-bold text-red-600'>{formatPrice(price)}</p>
-          <p className='text-base text-typo-5 line-through'>
+          <p className='text-lg font-bold text-red-600'>
             {formatPrice(salePrice)}
+          </p>
+          <p className='text-base text-typo-5 line-through'>
+            {formatPrice(price)}
           </p>
         </div>
         {/* rate */}
@@ -53,7 +45,7 @@ const ProductItem = (props: ProductType) => {
             Thêm vào giỏ hàng
           </Button>
           <Button size='large'>
-            <Link href={`/products/${id}`}>Xem ngay</Link>
+            <Link href={`/products/${_id}`}>Xem ngay</Link>
           </Button>
         </div>
       </div>
