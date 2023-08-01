@@ -4,14 +4,29 @@ export interface projectItem {
   img: string;
   slug: string;
 }
-export interface Product {
-  id: string;
+export interface ProductProps {
+  _id: string;
   name: string;
+  description: string;
+  category: CategoryProps;
   price: number;
   salePrice: number;
-  image: string;
-  rate: number;
-  description: string;
-  category: string;
+  thumbnail: string;
+  images: string[];
+  remainingItem: number;
   createdAt: string;
+  updatedAt: string;
+  information: {
+    wide: string;
+    long: string;
+    high: string;
+    material: string;
+  };
+}
+export interface CategoryProps {
+  _id: string;
+  name: string;
+  description: string;
+  thumbnail: string;
+  totalProducts: number;
 }
