@@ -46,12 +46,12 @@ export default function CartReducer(
   switch (action.type) {
     case 'ADD_TO_CART': {
       const isExisted = state.items.find(
-        product => product.id === action.payload.id,
+        product => product._id === action.payload._id,
       );
       if (isExisted) {
         newCartProducts = state.items.map(product => {
           let newQuantity = product.quantity + 1;
-          return product.id === action.payload.id
+          return product._id === action.payload._id
             ? {
                 ...product,
                 quantity: newQuantity,
@@ -74,7 +74,7 @@ export default function CartReducer(
     }
     case 'UPDATE_QUANTITY': {
       newCartProducts = state.items.map((item, index) => {
-        if (item.id === action.payload.id) {
+        if (item._id === action.payload.id) {
           item.quantity = action.payload.newQuantity;
           item.pay = action.payload.newQuantity * item.price;
         }
@@ -85,7 +85,7 @@ export default function CartReducer(
     }
     case 'DELETE_FROM_CART': {
       newCartProducts = state.items.filter(item => {
-        return item.id !== action.payload.id;
+        return item._id !== action.payload.id;
       });
       return updateCartState(state, newCartProducts);
     }

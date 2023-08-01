@@ -2,10 +2,12 @@
 import { Col, Divider, Empty, Row } from 'antd';
 import { useState } from 'react';
 
+import { ProductProps } from '@/Types/Type';
+
 import FilterContainer from './Filter/FilterContainer';
-import ProductItem, { ProductType } from './ProductItem';
+import ProductItem from './ProductItem';
 type Props = {
-  products: ProductType[];
+  products: ProductProps[];
 };
 export type FilterType = {
   sortBy: number;

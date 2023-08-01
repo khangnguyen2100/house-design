@@ -3,14 +3,17 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import Logo from '/public/Logo.png';
+
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { CgShoppingCart } from 'react-icons/cg';
 import Link from 'next/link';
 
 import { menuItems } from '@/constants';
+import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 
 function Nav() {
   const [isFixed, setIsFixed] = useState(false);
+  const { cartState } = useCartContext();
   const handleScroll = () => {
     const scollTop = window.scrollY || document.documentElement.scrollTop;
     setIsFixed(scollTop > 100);
@@ -47,8 +50,11 @@ function Nav() {
           </Link>
         </div>
         <div className='col-span-4 flex items-center justify-end gap-x-8'>
-          <Link href={'/cart'}>
+          <Link href={'/cart'} className='relative  '>
             <CgShoppingCart className='cursor-pointer text-[1.75em] text-black'></CgShoppingCart>
+            <span className='absolute left-4 top-0 rounded-md bg-slate-400 px-[5px] text-xs '>
+              {cartState.items.length}
+            </span>
           </Link>
           <MdOutlineAccountCircle className='cursor-pointer text-[1.75em]'></MdOutlineAccountCircle>
         </div>

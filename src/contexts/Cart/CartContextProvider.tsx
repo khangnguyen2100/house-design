@@ -1,16 +1,16 @@
 'use client';
 import { createContext, useContext, useReducer } from 'react';
 
-import { Product } from '@/Types/Type';
+import { ProductProps } from '@/Types/Type';
 
 import CartReducer, { CartState } from './CartReducer';
 interface ICartContext {
   cartState: CartState;
-  addToCart(newProduct: Product): void;
+  addToCart(newProduct: ProductProps): void;
   updateQuantity(newQuantity: number, id: string): void;
   removeFromCart(productId: string): void;
 }
-export interface CartProduct extends Product {
+export interface CartProduct extends ProductProps {
   quantity: number;
   pay: number;
 }
