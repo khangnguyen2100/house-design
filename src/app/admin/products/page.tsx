@@ -1,23 +1,34 @@
-import { Fab } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IoMdAdd } from 'react-icons/io';
 
 import { ProductProps } from '@/Types/Type';
+import AddProductModal from '@/components/admin/Product/AddProductModal';
 import ProductMenu from '@/components/admin/Product/ProductMenu';
 import { API_URL } from '@/constants';
 import { formatPrice } from '@/utils/product';
 
 const getProducts = async () => {
-  const products = await fetch(`${API_URL}/products`).then(res => res.json());
+  const products = await fetch(`${API_URL}/products`, {
+    cache: 'no-store',
+  }).then(res => res.json());
+
+  return products;
+};
+const getCategories = async () => {
+  const products = await fetch(`${API_URL}/categories`, {
+    cache: 'no-store',
+  }).then(res => res.json());
 
   return products;
 };
 
 const Page = async () => {
-  const products = await getProducts();
+  const [products, categories] = await Promise.all([
+    getProducts(),
+    getCategories(),
+  ]);
   return (
-    <div className='min-h-screen bg-gray-100'>
+    <div className='relative min-h-screen bg-gray-100'>
       <div className='flex justify-between p-4'>
         <h2>Sản phẩm</h2>
         <h2>Welcome Back, Clint</h2>
@@ -75,9 +86,7 @@ const Page = async () => {
           </ul>
         </div>
       </div>
-      <Fab color='secondary' aria-label='add'>
-        <IoMdAdd size={22} className='text-typo-1' />
-      </Fab>
+      <AddProductModal categories={categories} />
     </div>
   );
 };
