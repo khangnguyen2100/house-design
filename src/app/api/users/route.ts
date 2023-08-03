@@ -13,9 +13,13 @@ export async function GET() {
       const billInfo = await Bill.find({
         user: user._id,
       });
+      const totalBillPrice = billInfo.reduce((acc, cur) => {
+        return acc + cur.total;
+      }, 0);
       return {
         ...user._doc,
         totalBill: billInfo,
+        totalBillPrice,
       };
     }),
   );

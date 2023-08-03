@@ -1,9 +1,7 @@
-import React from 'react';
-import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
-
-import { API_URL, userData } from '@/constants';
-import { UserProps } from '@/Types/Type';
 import { Chip } from '@mui/material';
+
+import { API_URL } from '@/constants';
+import { UserProps } from '@/Types/Type';
 
 const getUsers = async () => {
   const users = await fetch(`${API_URL}/users`).then(res => res.json());
@@ -13,7 +11,6 @@ const getUsers = async () => {
 
 const customers = async () => {
   const userData = await getUsers();
-  console.log('data:', userData);
   return (
     <div className='min-h-screen bg-gray-100'>
       <div className='flex justify-between p-4'>
@@ -41,20 +38,38 @@ const customers = async () => {
                   <p className='text-bold'>{user.email}</p>
                 </div>
                 <div className='col-span-1'>
-                  <Chip
-                    label={user.role}
-                    color={user.role === 'admin' ? 'secondary' : 'primary'}
-                    variant='outlined'
-                    className='text-bold'
-                  />
+                  {user.role === 'admin' ? (
+                    <Chip
+                      label={user.role.toUpperCase()}
+                      color={'success'}
+                      variant='filled'
+                      className='text-bold'
+                    />
+                  ) : (
+                    <Chip
+                      label={user.role}
+                      color={'primary'}
+                      variant='outlined'
+                      className='text-bold'
+                    />
+                  )}
                 </div>
                 <div className='col-span-1'>
-                  <Chip
-                    label={user.status}
-                    color={user.status === 'active' ? 'primary' : 'error'}
-                    variant='outlined'
-                    className='text-bold'
-                  />
+                  {user.status === 'active' ? (
+                    <Chip
+                      label={user.status}
+                      color={'primary'}
+                      variant='outlined'
+                      className='text-bold'
+                    />
+                  ) : (
+                    <Chip
+                      label={user.status}
+                      color={'error'}
+                      variant='filled'
+                      className='text-bold'
+                    />
+                  )}
                 </div>
               </li>
             ))}
