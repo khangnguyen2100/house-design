@@ -47,7 +47,7 @@ const ProductDetail = (props: ProductProps) => {
           />
         </div>
         {/* rating */}
-        {/* <Rate disabled defaultValue={rate} className='mt-3' /> */}
+        <Rate disabled defaultValue={rate || 5} className='mt-3' />
         <Divider />
         {/* price */}
         <div className='mb-7 mt-5 flex items-center'>

@@ -37,13 +37,13 @@ function Cart() {
               </thead>
               <tbody>
                 {cartState.items.length > 0 &&
-                  cartState.items.map((item, index) => {
+                  cartState.items.map(item => {
                     return (
-                      <tr key={item.id}>
+                      <tr key={item._id}>
                         <td className='w-[240px]'>
                           <Link href={'/'} className='block'>
                             <Image
-                              src={item.image}
+                              src={item.thumbnail}
                               alt=''
                               width={240}
                               height={240}
@@ -68,7 +68,7 @@ function Cart() {
                               className='cursor-pointer border !border-r-0 border-black px-2 py-1 align-middle text-lg'
                               text=''
                               onClick={() => {
-                                updateQuantity(item.quantity - 1, item.id);
+                                updateQuantity(item.quantity - 1, item._id);
                               }}
                             >
                               <AiOutlineMinus></AiOutlineMinus>
@@ -81,7 +81,7 @@ function Cart() {
                               onChange={e => {
                                 const value = parseInt(e.target.value);
                                 if (!isNaN(value) && value >= 1) {
-                                  updateQuantity(value, item.id);
+                                  updateQuantity(value, item._id);
                                 }
                               }}
                               className='borderblack max-w-[40px] border border-black bg-white text-center outline-none'
@@ -91,7 +91,7 @@ function Cart() {
                               className='cursor-pointer border !border-l-0 border-black px-2 py-1 align-middle text-lg'
                               text=''
                               onClick={() => {
-                                updateQuantity(item.quantity + 1, item.id);
+                                updateQuantity(item.quantity + 1, item._id);
                               }}
                             >
                               <AiOutlinePlus></AiOutlinePlus>
@@ -102,7 +102,7 @@ function Cart() {
                         <td className='text-center'>
                           <HiOutlineXMark
                             className='cursor-pointer text-2xl'
-                            onClick={() => removeFromCart(item.id)}
+                            onClick={() => removeFromCart(item._id)}
                           ></HiOutlineXMark>
                         </td>
                       </tr>

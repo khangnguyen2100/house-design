@@ -1,16 +1,17 @@
+/* eslint-disable no-unused-vars */
 'use client';
 import { createContext, useContext, useReducer } from 'react';
 
-import { Product } from '@/Types/Type';
+import { ProductProps } from '@/Types/Type';
 
 import CartReducer, { CartState } from './CartReducer';
 interface ICartContext {
   cartState: CartState;
-  addToCart(newProduct: Product): void;
-  updateQuantity(newQuantity: number, id: string): void;
+  addToCart(newProduct: ProductProps): void;
+  updateQuantity(newQuantity: number, _id: string): void;
   removeFromCart(productId: string): void;
 }
-export interface CartProduct extends Product {
+export interface CartProduct extends ProductProps {
   quantity: number;
   pay: number;
 }
@@ -26,24 +27,24 @@ const initCartState = {
 const CartContextProvider = ({ children }: Props) => {
   const [cartState, dispatch] = useReducer(CartReducer, initCartState);
 
-  const addToCart = (newProduct: CartProduct) => {
+  const addToCart = (newProduct: ProductProps) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: newProduct,
     });
   };
-  const updateQuantity = (newQuantity: number = 1, id: string) => {
+  const updateQuantity = (newQuantity: number = 1, _id: string) => {
     if (newQuantity <= 0) newQuantity = 1;
     dispatch({
       type: 'UPDATE_QUANTITY',
-      payload: { newQuantity, id },
+      payload: { newQuantity, _id },
     });
   };
   const removeFromCart = (productId: string) => {
     dispatch({
       type: 'DELETE_FROM_CART',
       payload: {
-        id: productId,
+        _id: productId,
       },
     });
   };
