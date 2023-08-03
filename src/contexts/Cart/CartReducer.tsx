@@ -92,7 +92,7 @@ export default function CartReducer(
     }
     case 'DELETE_FROM_CART': {
       newCartProducts = state.items.filter(item => {
-        return item._id !== action.payload.id;
+        return item._id !== action.payload._id;
       });
       return updateCartState(state, newCartProducts);
     }

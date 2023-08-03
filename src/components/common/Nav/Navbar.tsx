@@ -15,7 +15,6 @@ import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 function Nav() {
   const [isFixed, setIsFixed] = useState(false);
   const { cartState } = useCartContext();
-  const { cartState } = useCartContext();
 
   const handleScroll = () => {
     const scollTop = window.scrollY || document.documentElement.scrollTop;
