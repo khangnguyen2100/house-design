@@ -8,12 +8,22 @@ import BannerIMG from '/public/Banner.jpg';
 import Logo from '/public/Logo.png';
 import ServiceIMG from '/public/service.jpg';
 
+import { useEffect, useState } from 'react';
+
 import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
 import BannerWithButton from '@/components/common/Banner/BannerWithButton';
-import { productsMock } from '@/constants';
-
+import { API_URL, productsMock } from '@/constants';
+import { ProductProps } from '@/Types/Type';
+const getProducts = async () => {
+  const products = await fetch(`${API_URL}/products`).then(res => res.json());
+  return products;
+};
 export default function Home() {
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  useEffect(() => {
+    getProducts().then(items => setProducts(items));
+  }, []);
   return (
     <Layout>
       <BannerWithButton
@@ -244,22 +254,23 @@ export default function Home() {
         </div>
       </section>
       <section className='sectionY'>
-        <div className='mx-auto max-w-large xld:max-w-medium'>
+        <div className='mx-auto w-full'>
           <Row className='mt-5'>
-            {productsMock.slice(0, 8).map((product, i) => (
-              <Col
-                className='gutter-row'
-                xs={{ span: 24 }}
-                md={{ span: 12 }}
-                lg={{ span: 8 }}
-                xl={{ span: 6 }}
-                key={i}
-              >
-                <ProductItem {...product} />
-              </Col>
-            ))}
+            {products &&
+              products.slice(0, 8).map((product, i) => (
+                <Col
+                  className='gutter-row'
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 8 }}
+                  xl={{ span: 6 }}
+                  key={i}
+                >
+                  <ProductItem {...product} />
+                </Col>
+              ))}
           </Row>
-          <div className='text-center'>
+          <div className='mt-4 text-center'>
             <Button type='primary' size='large' href='/products'>
               Xem thêm
             </Button>

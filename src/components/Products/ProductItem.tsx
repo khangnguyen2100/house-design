@@ -12,7 +12,7 @@ const ProductItem = (props: ProductProps) => {
   const { addToCart } = useCartContext();
   const { _id, name, rate, price, salePrice, thumbnail } = props;
   return (
-    <div className='group flex w-full flex-col items-center border border-solid border-transparent p-4 hover:border-[#DFDFE2]'>
+    <div className='group flex w-full flex-col items-center rounded-md border border-transparent p-4 hover:border-gray-600 hover:shadow-lg'>
       <div className='h-[200px] w-full'>
         <Image src={thumbnail} alt={name} width={296} height={200} />
       </div>

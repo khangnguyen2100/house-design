@@ -84,18 +84,19 @@ const ProductsList = (props: Props) => {
       />
       <Divider className='my-7' />
       <Row className='mt-5'>
-        {productsData.map((product, i) => (
-          <Col
-            className='gutter-row'
-            xs={{ span: 24 }}
-            md={{ span: 12 }}
-            lg={{ span: 8 }}
-            xl={{ span: 6 }}
-            key={i}
-          >
-            <ProductItem {...product} />
-          </Col>
-        ))}
+        {productsData.length > 0 &&
+          productsData.map((product, i) => (
+            <Col
+              className='gutter-row'
+              xs={{ span: 24 }}
+              md={{ span: 12 }}
+              lg={{ span: 8 }}
+              xl={{ span: 6 }}
+              key={i}
+            >
+              <ProductItem {...product} />
+            </Col>
+          ))}
         {productsData.length === 0 && (
           <div className='mt-16 grid w-full place-items-center'>
             <Empty description={'Không tìm thấy sản phẩm phù hợp'} />

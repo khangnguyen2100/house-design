@@ -2,30 +2,19 @@ import ProductBanner from '/public/images/banner/product-banner.jpg';
 
 import type { Metadata } from 'next';
 
-import ProductsList from '@/components/Products/ProductsList';
-import { API_URL } from '@/constants';
 import Banner from 'components/common/Banner/Banner';
+import { getCategories, getProducts } from '@/utils/fetchAPI';
+import ProductsList from '@/components/Products/ProductsList';
 
 export const metadata: Metadata = {
   title: 'Sản phẩm',
 };
 
-const getProducts = async () => {
-  const products = await fetch(`${API_URL}/products`).then(res => res.json());
-
-  return products;
-};
-const getCategories = async () => {
-  const categories = await fetch(`${API_URL}/categories`).then(res =>
-    res.json(),
-  );
-
-  return categories;
-};
-
 const Products = async () => {
-  const productsData = await getProducts();
-  const categoriesData = await getCategories();
+  let products = await getProducts();
+  console.log(products.length, 56);
+
+  let categories = await getCategories();
   return (
     <div className='flex min-h-screen w-full flex-col items-center'>
       <Banner
@@ -34,7 +23,7 @@ const Products = async () => {
         height='large'
         overlay
       />
-      <ProductsList products={productsData} categories={categoriesData} />
+      <ProductsList products={products} categories={categories} />
     </div>
   );
 };
