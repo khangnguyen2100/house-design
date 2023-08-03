@@ -9,6 +9,7 @@ import Banner from 'components/common/Banner/Banner';
 export const metadata: Metadata = {
   title: 'Sản phẩm',
 };
+export const revalidate = 30;
 
 const getProducts = async () => {
   const products = await fetch(`${API_URL}/products`).then(res => res.json());
