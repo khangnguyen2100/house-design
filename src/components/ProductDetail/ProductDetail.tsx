@@ -3,14 +3,15 @@ import { HeartOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Rate } from 'antd';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { formatPrice } from '@/utils/product';
+import { ProductProps } from '@/Types/Type';
 
-import { ProductType } from '../Products/ProductItem';
-
-const ProductDetail = (props: ProductType) => {
-  const { name, rate, price, salePrice, image, description, category } = props;
+const ProductDetail = (props: ProductProps) => {
+  const { name, rate, price, salePrice, thumbnail, description, category } =
+    props;
   const productAmountBtnClass =
     'w-10 h-10 flex items-center justify-center border border-solid border-[#DFDFE2] hover:bg-[#ccc] transition-all cursor-pointer';
 
@@ -27,7 +28,7 @@ const ProductDetail = (props: ProductType) => {
     <div className='mt-10 flex w-full items-start justify-center gap-x-[5%]'>
       <div className='image-side w-[50%]'>
         <Image
-          src={image}
+          src={thumbnail}
           alt={name}
           className='h-full w-full'
           width={600}
@@ -46,7 +47,7 @@ const ProductDetail = (props: ProductType) => {
           />
         </div>
         {/* rating */}
-        <Rate disabled defaultValue={rate} className='mt-3' />
+        {/* <Rate disabled defaultValue={rate} className='mt-3' /> */}
         <Divider />
         {/* price */}
         <div className='mb-7 mt-5 flex items-center'>
@@ -57,7 +58,11 @@ const ProductDetail = (props: ProductType) => {
         {/* category */}
         <div className='mb-7 mt-3'>
           <span className='text-lg font-bold text-typo-1'>Danh mục: </span>
-          <span className='text-base font-medium text-typo-3'>{category}</span>
+          <Link href={`/categories/${category._id}`} passHref>
+            <span className='text-base font-medium text-typo-3'>
+              {category.name}
+            </span>
+          </Link>
         </div>
         {/* actions */}
         <div className='my-3 flex items-center'>

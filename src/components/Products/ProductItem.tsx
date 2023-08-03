@@ -39,7 +39,7 @@ const ProductItem = (props: ProductProps) => {
           </p>
         </div>
         {/* rate */}
-        <Rate disabled defaultValue={rate} className='mb-5' />
+        {/* <Rate disabled defaultValue={rate} className='mb-5' /> */}
         <div className='invisible mt-3 flex items-center justify-between opacity-0 transition-all group-hover:visible group-hover:opacity-100'>
           <Button type='primary' size='large' onClick={() => addToCart(props)}>
             Thêm vào giỏ hàng
