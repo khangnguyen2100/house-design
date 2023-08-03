@@ -41,3 +41,25 @@ export interface UserProps {
   address: string;
   avatar: string;
 }
+export interface OrderInputProps {
+  user: string;
+  products: {
+    product: string;
+    quantity: number;
+    price: number;
+  }[];
+  totalPay: number;
+  totalQuantity: number;
+  address: string;
+  phoneNumber: string;
+  note: string;
+}
+export interface OrderProps {
+  _id: string;
+  user: UserProps;
+  products: ProductProps[];
+  total: number;
+  status: 'pending' | 'success' | 'cancel';
+  createdAt: string;
+  updatedAt: string;
+}

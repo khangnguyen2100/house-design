@@ -1,15 +1,64 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { HiOutlineXMark } from 'react-icons/hi2';
 import { BsCartX } from 'react-icons/bs';
+import { HiOutlineXMark } from 'react-icons/hi2';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { enqueueSnackbar } from 'notistack';
 
 import Button from '@/components/common/Button/Button';
 import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 import { formatPrice } from '@/utils/product';
+import { createOrder } from '@/services/orderServices';
+import { OrderInputProps } from '@/Types/Type';
+
 function Cart() {
-  const { cartState, updateQuantity, removeFromCart } = useCartContext();
+  const router = useRouter();
+
+  const session = useSession();
+  const noteRef = useRef<HTMLTextAreaElement>(null);
+  const { cartState, updateQuantity, removeFromCart, resetCart } =
+    useCartContext();
+  const handleCheckout = async () => {
+    // check login
+    if (!session.data?.user) {
+      enqueueSnackbar('Bạn cần đăng nhập để thanh toán', { variant: 'error' });
+      router.push('/login');
+      return;
+    }
+    const userId = (session.data.user as { id: string }).id;
+    console.log('userId:', userId)
+    try {
+      const data: OrderInputProps = {
+        user: userId,
+        note: noteRef.current?.value || '',
+        products: cartState.items.map(item => {
+          return {
+            product: item._id,
+            quantity: item.quantity,
+            price: item.price,
+          };
+        }),
+        totalPay: cartState.totalPay,
+        totalQuantity: cartState.totalQuantity,
+        address: '',
+        phoneNumber: '',
+      };
+      const result = await createOrder(data);
+      if (result.status === 201) {
+        enqueueSnackbar('Đặt hàng thành công', { variant: 'success' });
+        resetCart();
+        router.push('/products');
+      } else {
+        enqueueSnackbar('Đặt hàng thất bại', { variant: 'error' });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className='flex h-[300px] items-center justify-center bg-black text-white'>
@@ -117,6 +166,7 @@ function Cart() {
                   name='ghichu'
                   id='ghichu'
                   className='mt-3 h-full text-base'
+                  ref={noteRef}
                 ></textarea>
               </div>
               <div className='flex flex-col gap-y-5'>
@@ -130,6 +180,7 @@ function Cart() {
                     type='button'
                     className='cursor-pointer bg-black px-3 py-2 text-base font-bold text-white'
                     text='Thanh toán'
+                    onClick={handleCheckout}
                   ></Button>
                 </div>
               </div>
