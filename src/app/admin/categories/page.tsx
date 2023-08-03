@@ -1,12 +1,5 @@
-import { API_URL } from '@/constants';
 import { CategoryProps } from '@/Types/Type';
-const getCategories = async () => {
-  const categories = await fetch(`${API_URL}/categories`).then(res =>
-    res.json(),
-  );
-
-  return categories;
-};
+import { getCategories } from '@/services/categoryServices';
 
 const Page = async () => {
   const categories = await getCategories();
