@@ -9,6 +9,7 @@ import ProductsList from '@/components/Products/ProductsList';
 export const metadata: Metadata = {
   title: 'Sản phẩm',
 };
+export const revalidate = 30;
 
 const Products = async () => {
   let products = await getProducts();
