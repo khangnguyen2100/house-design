@@ -84,6 +84,9 @@ const AddProductModal = ({ categories }: Props) => {
           remainingItem: enteredRemainingItem,
           description: enteredDescription,
         }),
+        next: {
+          tags: ['products', 'categories'],
+        },
       });
       const data = await res.json();
       enqueueSnackbar(data.message, { variant: 'success' });
