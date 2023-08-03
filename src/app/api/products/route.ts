@@ -31,7 +31,6 @@ export async function GET() {
       };
     }),
   );
-  console.log('getCategoryInfo:', getCategoryInfo);
 
   return NextResponse.json(getCategoryInfo);
 }

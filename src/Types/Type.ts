@@ -16,6 +16,7 @@ export interface ProductProps {
   remainingItem: number;
   createdAt: string;
   updatedAt: string;
+  rate: number;
   information: {
     wide: string;
     long: string;
@@ -29,4 +30,14 @@ export interface CategoryProps {
   description: string;
   thumbnail: string;
   totalProducts: number;
+}
+export interface UserProps {
+  _id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+  status: 'active' | 'block';
+  phoneNumber: string;
+  address: string;
+  avatar: string;
 }

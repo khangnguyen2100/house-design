@@ -2,12 +2,14 @@
 import { Col, Divider, Empty, Row } from 'antd';
 import { useState } from 'react';
 
-import { ProductProps } from '@/Types/Type';
+import { CategoryProps, ProductProps } from '@/Types/Type';
 
 import FilterContainer from './Filter/FilterContainer';
 import ProductItem from './ProductItem';
+
 type Props = {
   products: ProductProps[];
+  categories: CategoryProps[];
 };
 export type FilterType = {
   sortBy: number;
@@ -25,7 +27,7 @@ export type FilterChangeType = {
 };
 
 const ProductsList = (props: Props) => {
-  const { products } = props;
+  const { products, categories } = props;
   const [filters, setFilters] = useState<FilterType>(filterInit);
   const [productsData, setProductsData] = useState(products);
 
@@ -42,7 +44,7 @@ const ProductsList = (props: Props) => {
       const { category, search } = filters;
 
       const isCategory =
-        category.length === 0 || category.includes(product.category);
+        category.length === 0 || category.includes(product.category._id);
 
       const isSearch =
         !search || product.name.toLowerCase().includes(search.toLowerCase());
@@ -75,6 +77,7 @@ const ProductsList = (props: Props) => {
     <div className='flex min-h-screen w-full max-w-large flex-col px-5'>
       <FilterContainer
         filters={filters}
+        categories={categories}
         onChange={handleFiltersChange}
         onFilter={handleFilterProducts}
         onReset={handleResetFilters}

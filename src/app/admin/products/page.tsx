@@ -1,14 +1,12 @@
-import { Button, Divider, Fab, Menu, MenuItem } from '@mui/material';
+import { Fab } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { IoMdAdd } from 'react-icons/io';
 
-import { API_URL } from '@/constants';
 import { ProductProps } from '@/Types/Type';
-import { formatPrice } from '@/utils/product';
 import ProductMenu from '@/components/admin/Product/ProductMenu';
+import { API_URL } from '@/constants';
+import { formatPrice } from '@/utils/product';
 
 const getProducts = async () => {
   const products = await fetch(`${API_URL}/products`).then(res => res.json());
@@ -21,17 +19,17 @@ const Page = async () => {
   return (
     <div className='min-h-screen bg-gray-100'>
       <div className='flex justify-between p-4'>
-        <h2>Products</h2>
+        <h2>Sản phẩm</h2>
         <h2>Welcome Back, Clint</h2>
       </div>
       <div className='p-4'>
         <div className='m-auto w-full overflow-y-auto rounded-lg border bg-white p-4'>
           <div className='my-3 grid grid-cols-3 items-center justify-between p-2 sm:grid-cols-4 md:grid-cols-6'>
-            <span className='col-span-2'>Name</span>
-            <span className='col-span-1'>Category</span>
-            <span className='col-span-1'>Price</span>
-            <span className='col-span-1'>Thumbnail</span>
-            <span className='col-span-1'>Remaining Item</span>
+            <span className='col-span-2'>Tên</span>
+            <span className='col-span-1'>Danh mục</span>
+            <span className='col-span-1'>Giá</span>
+            <span className='col-span-1'>Ảnh</span>
+            <span className='col-span-1'>Số lượng</span>
           </div>
           <ul>
             {products.map((product: ProductProps, index: number) => {
