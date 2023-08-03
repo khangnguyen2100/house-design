@@ -1,5 +1,6 @@
 'use client';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
+import type { SelectChangeEvent } from '@mui/material';
 import {
   Box,
   Button,
@@ -12,10 +13,10 @@ import {
   TextareaAutosize,
   TextField,
 } from '@mui/material';
-import type { SelectChangeEvent } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import { FormEvent, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
+import { useRouter } from 'next/navigation';
 
 import { API_URL } from '@/constants';
 import { CategoryProps } from '@/Types/Type';
@@ -25,6 +26,8 @@ interface Props {
 }
 
 const AddProductModal = ({ categories }: Props) => {
+  const router = useRouter();
+
   const [categoryValue, setCategoryValue] = useState(categories[0]._id);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -88,7 +91,11 @@ const AddProductModal = ({ categories }: Props) => {
           tags: ['products', 'categories'],
         },
       });
+      if (!res.ok) {
+        throw new Error('Thêm sản phẩm thất bại');
+      }
       const data = await res.json();
+      router.refresh();
       enqueueSnackbar(data.message, { variant: 'success' });
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });

@@ -7,6 +7,8 @@ import ProductMenu from '@/components/admin/Product/ProductMenu';
 import { formatPrice } from '@/utils/product';
 import { getProducts } from '@/services/productServices';
 import { getCategories } from '@/services/categoryServices';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 const Page = async () => {
   const [products, categories] = await Promise.all([
@@ -65,7 +67,7 @@ const Page = async () => {
                   <div className='col-span-1'>
                     <p className='text-bold text-lg'>{product.remainingItem}</p>
                   </div>
-                  <ProductMenu />
+                  <ProductMenu productId={product._id} />
                 </li>
               );
             })}

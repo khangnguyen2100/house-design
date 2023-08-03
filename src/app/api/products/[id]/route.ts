@@ -59,9 +59,8 @@ export async function DELETE(
   { params }: { params: { id: string } },
 ) {
   const { id } = params;
-  const body = await request.json();
   await connectDb();
-  const result = await Product.findByIdAndDelete({ _id: id }, body);
+  const result = await Product.findByIdAndDelete(id);
   if (!result) {
     return NextResponse.json(
       {
@@ -75,7 +74,7 @@ export async function DELETE(
       message: 'Product deleted successfully',
     },
     {
-      status: 201,
+      status: 200,
     },
   );
 }

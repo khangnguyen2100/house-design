@@ -19,8 +19,6 @@ export async function POST(request: Request) {
 }
 // get all categories
 export async function GET() {
-  console.log('success');
-
   await connectDb();
   const categories = await Category.find({});
   // get total products in category
