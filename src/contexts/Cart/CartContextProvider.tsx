@@ -10,6 +10,7 @@ interface ICartContext {
   addToCart(newProduct: ProductProps): void;
   updateQuantity(newQuantity: number, _id: string): void;
   removeFromCart(productId: string): void;
+  resetCart(): void;
 }
 export interface CartProduct extends ProductProps {
   quantity: number;
@@ -48,11 +49,17 @@ const CartContextProvider = ({ children }: Props) => {
       },
     });
   };
+  const resetCart = () => {
+    dispatch({
+      type: 'RESET_CART',
+    });
+  };
   const CartContextValue: ICartContext = {
     cartState,
     addToCart,
     updateQuantity,
     removeFromCart,
+    resetCart
     // updateQuantity,
   };
   return (

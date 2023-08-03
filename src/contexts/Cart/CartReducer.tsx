@@ -6,7 +6,9 @@ interface AddToCartAction {
   type: 'ADD_TO_CART';
   payload: ProductProps;
 }
-
+interface ResetCartAction {
+  type: 'RESET_CART';
+}
 // Action update quantity
 interface UpdateQuantityAction {
   type: 'UPDATE_QUANTITY';
@@ -22,7 +24,11 @@ interface DeleteFromCart {
     _id: string;
   };
 }
-type CartAction = AddToCartAction | UpdateQuantityAction | DeleteFromCart;
+type CartAction =
+  | AddToCartAction
+  | UpdateQuantityAction
+  | DeleteFromCart
+  | ResetCartAction;
 
 export type CartState = {
   items: CartProduct[];
@@ -89,6 +95,14 @@ export default function CartReducer(
         return item._id !== action.payload._id;
       });
       return updateCartState(state, newCartProducts);
+    }
+    case 'RESET_CART': {
+      return {
+        ...state,
+        items: [],
+        totalPay: 0,
+        totalQuantity: 0,
+      };
     }
     default:
       return state;
