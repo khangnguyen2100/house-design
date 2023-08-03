@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   await Product.create(body);
   return NextResponse.json(
     {
-      message: 'Success',
+      message: 'Tạo sản phẩm thành công',
     },
     {
       status: 201,
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 // get all products
 export async function GET() {
   await connectDb();
-  const products = await Product.find({});
+  const products = await Product.find({}).sort({ createdAt: -1 });
   const getCategoryInfo = await Promise.all(
     products.map(async product => {
       const categoryInfo = await Category.findById(product.category);

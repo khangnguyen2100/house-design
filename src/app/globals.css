@@ -125,3 +125,7 @@ a {
 .transition-opacity-300ms {
   @apply transition-opacity duration-300 ease-in-out;
 }
+
+a {
+  color : gray;
+}

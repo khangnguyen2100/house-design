@@ -18,7 +18,7 @@ export default function Index() {
         }}
       >
         <Typography component='h1' variant='h5'>
-          Sign up
+          Đăng ký tài khoản
         </Typography>
         <SignUpForm />
       </Box>

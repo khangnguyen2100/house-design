@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server';
 
 import connectDb from 'lib/config/db';
 import Product from 'lib/schema/product';
+import Category from 'lib/schema/category';
 
 // get product by id
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { id } = params;
   await connectDb();
   const result = await Product.findById(id);
+  const categoryInfo = await Category.findById(result.category);
   if (!result) {
     return NextResponse.json(
       {
@@ -16,7 +18,10 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
       { status: 404 },
     );
   }
-  return NextResponse.json(result);
+  return NextResponse.json({
+    ...result._doc,
+    category: categoryInfo,
+  });
 }
 
 // update product

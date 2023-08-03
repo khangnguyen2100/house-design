@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const billSchema = new Schema(
+const orderSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     products: [
@@ -10,8 +10,15 @@ const billSchema = new Schema(
         price: Number,
       },
     ],
-    total: Number,
-    status: String,
+    totalPay: Number,
+    totalQuantity: Number,
+    status: {
+      type: String,
+      default: 'pending',
+      enum: {
+        values: ['pending', 'delivery', 'success', 'cancel'],
+      },
+    },
     address: String,
     phoneNumber: Number,
     note: String,
@@ -21,5 +28,5 @@ const billSchema = new Schema(
   },
 );
 
-const Bill = mongoose.models.Bill || mongoose.model('Bill', billSchema);
-export default Bill;
+const Order = mongoose.models.Order || mongoose.model('Order', orderSchema);
+export default Order;

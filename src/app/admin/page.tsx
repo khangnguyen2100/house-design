@@ -5,7 +5,7 @@ import BarChart from 'components/admin/BarChart';
 import Header from 'components/admin/Header';
 import RecentOrders from 'components/admin/RecentOrders';
 import TopCards from 'components/admin/TopCards';
-
+export const revalidate = 30;
 export const metadata: Metadata = {
   title: 'Admin',
 };

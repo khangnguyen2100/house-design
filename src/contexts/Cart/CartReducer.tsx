@@ -1,16 +1,19 @@
 import { calculateTotalPay, calculateTotalQuantity } from '@/utils/cart';
+import { ProductProps } from '@/Types/Type';
 
 import { CartProduct } from './CartContextProvider';
 interface AddToCartAction {
   type: 'ADD_TO_CART';
-  payload: CartProduct;
+  payload: ProductProps;
 }
-
+interface ResetCartAction {
+  type: 'RESET_CART';
+}
 // Action update quantity
 interface UpdateQuantityAction {
   type: 'UPDATE_QUANTITY';
   payload: {
-    id: string;
+    _id: string;
     newQuantity: number;
   };
 }
@@ -18,10 +21,14 @@ interface UpdateQuantityAction {
 interface DeleteFromCart {
   type: 'DELETE_FROM_CART';
   payload: {
-    id: string;
+    _id: string;
   };
 }
-type CartAction = AddToCartAction | UpdateQuantityAction | DeleteFromCart;
+type CartAction =
+  | AddToCartAction
+  | UpdateQuantityAction
+  | DeleteFromCart
+  | ResetCartAction;
 
 export type CartState = {
   items: CartProduct[];
@@ -74,7 +81,7 @@ export default function CartReducer(
     }
     case 'UPDATE_QUANTITY': {
       newCartProducts = state.items.map((item, index) => {
-        if (item._id === action.payload.id) {
+        if (item._id === action.payload._id) {
           item.quantity = action.payload.newQuantity;
           item.pay = action.payload.newQuantity * item.price;
         }
@@ -88,6 +95,14 @@ export default function CartReducer(
         return item._id !== action.payload.id;
       });
       return updateCartState(state, newCartProducts);
+    }
+    case 'RESET_CART': {
+      return {
+        ...state,
+        items: [],
+        totalPay: 0,
+        totalQuantity: 0,
+      };
     }
     default:
       return state;

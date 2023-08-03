@@ -1,16 +1,18 @@
 import NotFound from '@/components/ProductDetail/NotFound';
 import ProductDetail from '@/components/ProductDetail/ProductDetail';
 import RelatedProducts from '@/components/ProductDetail/RelatedProducts';
-import { productsMock } from '@/constants';
+import {
+  getProductById,
+  getProducts,
+  getProductsInCategory,
+} from '@/services/productServices';
 
 type PropsType = {
   params: { product_id: string };
 };
 
 export async function generateMetadata({ params }: PropsType) {
-  const productDetailData = productsMock.find(
-    product => product.id === params.product_id,
-  );
+  const productDetailData = await getProductById(params.product_id);
   return {
     title: productDetailData?.name || 'Không tìm thấy sản phẩm',
     description: productDetailData?.description || '',
@@ -18,25 +20,23 @@ export async function generateMetadata({ params }: PropsType) {
 }
 
 export async function generateStaticParams() {
-  return productsMock.map(product => ({
-    product_id: product.id,
+  const products = await getProducts();
+  const paths = products.map((product: any) => ({
+    params: { product_id: product._id },
   }));
+  return paths;
 }
 
-export default function Page({ params }: PropsType) {
-  const productDetailData = productsMock.find(
-    product => product.id === params.product_id,
-  );
-  const category = productDetailData?.category || '';
-  const relatedProducts = productsMock.filter(
-    product => product.category === category,
-  );
+export default async function Page({ params }: PropsType) {
+  const productData = await getProductById(params.product_id);
+  console.log('productData:', productData);
+  const relatedProducts = await getProductsInCategory(productData.category._id);
 
   return (
     <div className='flex w-full max-w-large justify-center px-4'>
-      {productDetailData ? (
+      {productData ? (
         <section className='mt-5 flex flex-col'>
-          <ProductDetail {...productDetailData} />
+          <ProductDetail {...productData} />
           <RelatedProducts relatedProducts={relatedProducts} />
         </section>
       ) : (

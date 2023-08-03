@@ -1,16 +1,25 @@
-import { HeartOutlined } from '@ant-design/icons';
+import { AiOutlineHeart } from 'react-icons/ai';
 import Image from 'next/image';
-import React from 'react';
-import { Button, Divider, Rate } from 'antd';
 import Link from 'next/link';
+import { enqueueSnackbar } from 'notistack';
+import { useState } from 'react';
+import { LoadingButton } from '@mui/lab';
+import { Button, Divider } from '@mui/material';
 
-import { formatPrice } from '@/utils/product';
-import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 import { ProductProps } from '@/Types/Type';
+import { useCartContext } from '@/contexts/Cart/CartContextProvider';
+import { formatPrice } from '@/utils/product';
 
 const ProductItem = (props: ProductProps) => {
   const { addToCart } = useCartContext();
-  const { _id, name, rate, price, salePrice, thumbnail } = props;
+  const [loading, setLoading] = useState(false);
+  const { _id, name, price, salePrice, thumbnail } = props;
+  const handleAddToCart = () => {
+    setLoading(true);
+    addToCart(props);
+    enqueueSnackbar('Thêm vào giỏ hàng thành công', { variant: 'success' });
+    setLoading(false);
+  };
   return (
     <div className='group flex w-full flex-col items-center rounded-md border border-transparent p-4 hover:border-gray-600 hover:shadow-lg'>
       <div className='h-[200px] w-full'>
@@ -18,15 +27,13 @@ const ProductItem = (props: ProductProps) => {
       </div>
       <div className='flex w-full flex-col'>
         {/* info */}
-        <div className='flex items-center justify-between'>
+        <div className='flex min-h-[50px] items-start justify-between'>
           <Link href={`/products/${_id}`}>
             <h3 className='text-base text-purple-600'>{name}</h3>
           </Link>
-
-          <Button
-            type='text'
-            icon={<HeartOutlined style={{ fontSize: '22px' }} />}
-          />
+          <div>
+            <AiOutlineHeart style={{ fontSize: '22px' }} />
+          </div>
         </div>
         <Divider />
         {/* price */}
@@ -38,13 +45,17 @@ const ProductItem = (props: ProductProps) => {
             {formatPrice(price)}
           </p>
         </div>
-        {/* rate */}
-        <Rate disabled defaultValue={rate} className='mb-5' />
         <div className='invisible mt-3 flex items-center justify-between opacity-0 transition-all group-hover:visible group-hover:opacity-100'>
-          <Button type='primary' size='large' onClick={() => addToCart(props)}>
+          <LoadingButton
+            loading={loading}
+            color='primary'
+            size='small'
+            variant='contained'
+            onClick={handleAddToCart}
+          >
             Thêm vào giỏ hàng
-          </Button>
-          <Button size='large'>
+          </LoadingButton>
+          <Button variant='outlined' className='text-gray-500' size='small'>
             <Link href={`/products/${_id}`}>Xem ngay</Link>
           </Button>
         </div>
