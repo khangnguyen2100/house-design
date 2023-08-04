@@ -67,7 +67,10 @@ const Page = async () => {
                   <div className='col-span-1'>
                     <p className='text-bold text-lg'>{product.remainingItem}</p>
                   </div>
-                  <ProductMenu productId={product._id} />
+                  <ProductMenu
+                    categories={categories}
+                    productId={product._id}
+                  />
                 </li>
               );
             })}

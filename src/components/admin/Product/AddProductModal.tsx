@@ -13,10 +13,11 @@ import {
   TextareaAutosize,
   TextField,
 } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
 import { FormEvent, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
-import { useRouter } from 'next/navigation';
+import isURL from 'validator/lib/isURL';
 
 import { API_URL } from '@/constants';
 import { CategoryProps } from '@/Types/Type';
@@ -70,6 +71,13 @@ const AddProductModal = ({ categories }: Props) => {
       setLoading(false);
       return;
     }
+    if (!isURL(enteredThumbnail)) {
+      enqueueSnackbar('Vui lòng nhập đúng định dạng url', {
+        variant: 'info',
+      });
+      setLoading(false);
+      return;
+    }
 
     try {
       // send request
@@ -87,9 +95,6 @@ const AddProductModal = ({ categories }: Props) => {
           remainingItem: enteredRemainingItem,
           description: enteredDescription,
         }),
-        next: {
-          tags: ['products', 'categories'],
-        },
       });
       if (!res.ok) {
         throw new Error('Thêm sản phẩm thất bại');
@@ -195,6 +200,7 @@ const AddProductModal = ({ categories }: Props) => {
                   name='remainingItem'
                   fullWidth
                   id='remainingItem'
+                  type='number'
                   label='Số lượng'
                 />
               </div>
@@ -230,14 +236,11 @@ const AddProductModal = ({ categories }: Props) => {
           </Box>
         </DialogContent>
       </Dialog>
-      <Fab
-        color='secondary'
-        aria-label='add'
-        className='fixed bottom-10 right-10 z-10'
-        onClick={handleOpenModal}
-      >
-        <IoMdAdd size={22} className='text-white' />
-      </Fab>
+      <div className='fixed bottom-10 right-10 z-10'>
+        <Fab color='primary' aria-label='add' onClick={handleOpenModal}>
+          <IoMdAdd size={22} className='text-white' />
+        </Fab>
+      </div>
     </>
   );
 };

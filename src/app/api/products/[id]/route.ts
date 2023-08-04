@@ -32,8 +32,9 @@ export async function PUT(
   const { id } = params;
   const body = await request.json();
   await connectDb();
-  const result = await Product.findOneAndUpdate({ _id: id }, body, {
+  const result = await Product.findByIdAndUpdate(id, body, {
     new: true,
+    runValidators: true,
   });
   if (!result) {
     return NextResponse.json(
@@ -45,7 +46,7 @@ export async function PUT(
   }
   return NextResponse.json(
     {
-      message: result,
+      message: 'Cập nhật sản phẩm thành công',
     },
     {
       status: 201,
