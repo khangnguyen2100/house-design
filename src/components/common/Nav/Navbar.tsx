@@ -4,21 +4,42 @@ import { useEffect, useState } from 'react';
 
 import Logo from '/public/Logo.png';
 
-import { Badge } from '@mui/material';
+import { Badge, Button, Menu, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import { CgShoppingCart } from 'react-icons/cg';
 import { MdOutlineAccountCircle } from 'react-icons/md';
+import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { enqueueSnackbar } from 'notistack';
 
 import { menuItems } from '@/constants';
 import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 
 function Nav() {
+  const router = useRouter();
   const [isFixed, setIsFixed] = useState(false);
   const { cartState } = useCartContext();
+  const session = useSession();
+  const [userMenuEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const isOpen = Boolean(userMenuEl);
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleScroll = () => {
     const scollTop = window.scrollY || document.documentElement.scrollTop;
     setIsFixed(scollTop > 100);
+  };
+  const handleLogout = () => {
+    signOut();
+    handleCloseUserMenu();
+    router.push('/');
+    enqueueSnackbar('Đăng xuất thành công', {
+      variant: 'info',
+    });
   };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -58,10 +79,44 @@ function Nav() {
               showZero
               color='secondary'
             >
-              <CgShoppingCart className='cursor-pointer text-[1.75em] text-black'></CgShoppingCart>
+              <CgShoppingCart className='cursor-pointer text-[1.75em] text-typo-1 hover:text-purple-700'></CgShoppingCart>
             </Badge>
           </Link>
-          <MdOutlineAccountCircle className='cursor-pointer text-[1.75em]'></MdOutlineAccountCircle>
+          {session.data ? (
+            <div>
+              <Button
+                id='demo-positioned-button'
+                aria-controls={isOpen ? 'demo-positioned-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={isOpen ? 'true' : undefined}
+                onClick={handleOpenUserMenu}
+              >
+                {session.data.user?.name || 'user'}
+              </Button>
+              <Menu
+                id='demo-positioned-menu'
+                aria-labelledby='demo-positioned-button'
+                anchorEl={userMenuEl}
+                open={isOpen}
+                onClose={handleCloseUserMenu}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </div>
+          ) : (
+            <Link href={'/login'}>
+              <MdOutlineAccountCircle className='cursor-pointer text-[1.75em] text-typo-1 hover:text-purple-700'></MdOutlineAccountCircle>
+            </Link>
+          )}
         </div>
       </div>
     </header>
