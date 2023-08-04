@@ -2,6 +2,7 @@ import { calculateTotalPay, calculateTotalQuantity } from '@/utils/cart';
 import { ProductProps } from '@/Types/Type';
 
 import { CartProduct } from './CartContextProvider';
+
 interface AddToCartAction {
   type: 'ADD_TO_CART';
   payload: ProductProps;
@@ -38,18 +39,21 @@ export type CartState = {
 const updateCartState = (state: CartState, items: CartProduct[]) => {
   const totalQuantity = calculateTotalQuantity(items);
   const totalPay = calculateTotalPay(items);
-  return {
+  const cartValue = {
     ...state,
     items,
     totalQuantity,
     totalPay,
   };
+  window.localStorage.setItem('cart', JSON.stringify(cartValue));
+  return cartValue;
 };
 export default function CartReducer(
   state: CartState,
   action: CartAction,
 ): CartState {
   let newCartProducts: CartProduct[] = [];
+
   switch (action.type) {
     case 'ADD_TO_CART': {
       const isExisted = state.items.find(
