@@ -13,8 +13,6 @@ export const revalidate = 30;
 
 const Products = async () => {
   let products = await getProducts();
-  console.log(products.length, 56);
-
   let categories = await getCategories();
   return (
     <div className='flex min-h-screen w-full flex-col items-center'>

@@ -53,6 +53,8 @@ export interface OrderInputProps {
   address: string;
   phoneNumber: string;
   note: string;
+  email: string;
+  customerName: string;
 }
 export interface OrderProps {
   _id: string;

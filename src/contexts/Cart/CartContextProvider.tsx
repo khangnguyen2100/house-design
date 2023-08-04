@@ -20,13 +20,17 @@ const CartContext = createContext<ICartContext | undefined>(undefined);
 type Props = {
   children?: React.ReactNode;
 };
-const initCartState = {
+const initCartState: CartState = {
   items: [],
   totalPay: 0,
   totalQuantity: 0,
 };
+const getInitialCart = (): CartState => {
+  const cart = window.localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : initCartState;
+};
 const CartContextProvider = ({ children }: Props) => {
-  const [cartState, dispatch] = useReducer(CartReducer, initCartState);
+  const [cartState, dispatch] = useReducer(CartReducer, getInitialCart());
 
   const addToCart = (newProduct: ProductProps) => {
     dispatch({
@@ -59,7 +63,7 @@ const CartContextProvider = ({ children }: Props) => {
     addToCart,
     updateQuantity,
     removeFromCart,
-    resetCart
+    resetCart,
     // updateQuantity,
   };
   return (
