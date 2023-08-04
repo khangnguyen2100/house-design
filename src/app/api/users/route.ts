@@ -14,7 +14,7 @@ export async function GET() {
         user: user._id,
       });
       const totalOrderPrice = orderInfo.reduce((acc, cur) => {
-        return acc + cur.total;
+        return acc + cur.totalPay;
       }, 0);
       return {
         ...user._doc,

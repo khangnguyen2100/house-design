@@ -2,6 +2,7 @@ import { Chip } from '@mui/material';
 
 import { UserProps } from '@/Types/Type';
 import { getUsers } from '@/services/userServices';
+import CustomersMenu from '@/components/admin/Customers/CustomersMenu';
 
 const customers = async () => {
   const userData = await getUsers();
@@ -23,7 +24,7 @@ const customers = async () => {
             {userData.map((user: UserProps, index: number) => (
               <li
                 key={index}
-                className='my-3 grid cursor-pointer grid-cols-2 items-center justify-between rounded-lg bg-gray-50 p-2 hover:bg-gray-100 sm:grid-cols-3 md:grid-cols-4'
+                className='relative my-3 grid cursor-pointer grid-cols-2 items-center justify-between rounded-lg bg-gray-50 p-2 hover:bg-gray-100 sm:grid-cols-3 md:grid-cols-4'
               >
                 <div className='flex items-center'>
                   <p className='pl-4'>{user.name}</p>
@@ -31,6 +32,7 @@ const customers = async () => {
                 <div className='col-span-1'>
                   <p className='text-bold'>{user.email}</p>
                 </div>
+                {/* role */}
                 <div className='col-span-1'>
                   {user.role === 'admin' ? (
                     <Chip
@@ -48,6 +50,7 @@ const customers = async () => {
                     />
                   )}
                 </div>
+                {/* status */}
                 <div className='col-span-1'>
                   {user.status === 'active' ? (
                     <Chip
@@ -64,6 +67,9 @@ const customers = async () => {
                       className='text-bold'
                     />
                   )}
+                </div>
+                <div className='col-span-1'>
+                  <CustomersMenu userData={user} />
                 </div>
               </li>
             ))}
