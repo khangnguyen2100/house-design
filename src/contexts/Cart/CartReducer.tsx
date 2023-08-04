@@ -80,7 +80,7 @@ export default function CartReducer(
       }
     }
     case 'UPDATE_QUANTITY': {
-      newCartProducts = state.items.map((item, index) => {
+      newCartProducts = state.items.map(item => {
         if (item._id === action.payload._id) {
           item.quantity = action.payload.newQuantity;
           item.pay = action.payload.newQuantity * item.price;
