@@ -40,6 +40,8 @@ export interface UserProps {
   phoneNumber: string;
   address: string;
   avatar: string;
+  totalOrders: number;
+  totalOrderPrice: number;
 }
 export interface OrderInputProps {
   user: string;
