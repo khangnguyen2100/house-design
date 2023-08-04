@@ -11,7 +11,6 @@ const orders = async () => {
     <div className='min-h-screen bg-gray-100'>
       <div className='flex justify-between px-4 pt-4'>
         <h2>Đơn đặt hàng</h2>
-        <h2>Welcome Back, Clint</h2>
       </div>
       <div className='p-4'>
         <div className='m-auto w-full overflow-y-auto rounded-lg border bg-white p-4'>
