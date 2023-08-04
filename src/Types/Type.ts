@@ -60,8 +60,14 @@ export interface OrderProps {
   _id: string;
   user: UserProps;
   products: ProductProps[];
-  total: number;
-  status: 'pending' | 'success' | 'cancel';
+  totalPay: number;
+  totalQuantity: number;
+  customerName: string;
+  email: string;
+  address: string;
+  phoneNumber: string;
+  note: string;
+  status: 'pending' | 'delivery' | 'success' | 'cancel';
   createdAt: string;
   updatedAt: string;
 }

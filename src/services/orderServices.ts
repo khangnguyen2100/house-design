@@ -11,4 +11,13 @@ const createOrder = async (data: OrderInputProps) => {
   });
   return await response.json();
 };
-export { createOrder };
+const getAllOrders = async () => {
+  const response = await fetch(`${API_URL}/order`);
+  return await response.json();
+};
+const getOrderById = async (id: string) => {
+  const response = await fetch(`${API_URL}/order/${id}`);
+  return await response.json();
+};
+
+export { createOrder, getAllOrders, getOrderById };
