@@ -1,13 +1,7 @@
 import { Chip } from '@mui/material';
 
-import { API_URL } from '@/constants';
 import { UserProps } from '@/Types/Type';
-
-const getUsers = async () => {
-  const users = await fetch(`${API_URL}/users`).then(res => res.json());
-
-  return users;
-};
+import { getUsers } from '@/services/userServices';
 
 const customers = async () => {
   const userData = await getUsers();

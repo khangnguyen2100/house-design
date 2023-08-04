@@ -5,6 +5,8 @@ import Sidebar from '@/components/admin/Sidebar';
 export const metadata: Metadata = {
   title: 'Admin',
 };
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 export default function AdminLayout({
   children,

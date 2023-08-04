@@ -4,23 +4,11 @@ import Link from 'next/link';
 import { ProductProps } from '@/Types/Type';
 import AddProductModal from '@/components/admin/Product/AddProductModal';
 import ProductMenu from '@/components/admin/Product/ProductMenu';
-import { API_URL } from '@/constants';
 import { formatPrice } from '@/utils/product';
-
-const getProducts = async () => {
-  const products = await fetch(`${API_URL}/products`, {
-    cache: 'no-store',
-  }).then(res => res.json());
-
-  return products;
-};
-const getCategories = async () => {
-  const products = await fetch(`${API_URL}/categories`, {
-    cache: 'no-store',
-  }).then(res => res.json());
-
-  return products;
-};
+import { getProducts } from '@/services/productServices';
+import { getCategories } from '@/services/categoryServices';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 const Page = async () => {
   const [products, categories] = await Promise.all([
@@ -79,7 +67,7 @@ const Page = async () => {
                   <div className='col-span-1'>
                     <p className='text-bold text-lg'>{product.remainingItem}</p>
                   </div>
-                  <ProductMenu />
+                  <ProductMenu productId={product._id} />
                 </li>
               );
             })}

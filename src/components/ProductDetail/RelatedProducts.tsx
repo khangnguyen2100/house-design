@@ -1,10 +1,12 @@
 'use client';
 import { Col, Row } from 'antd';
 
-import ProductItem, { ProductType } from '../Products/ProductItem';
+import { ProductProps } from '@/Types/Type';
+
+import ProductItem from '../Products/ProductItem';
 
 type Props = {
-  relatedProducts: ProductType[];
+  relatedProducts: ProductProps[];
 };
 
 const RelatedProducts = (props: Props) => {
