@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import Layout from '@/components/Layout/Layout';
 import ProductItem from '@/components/Products/ProductItem';
 import BannerWithButton from '@/components/common/Banner/BannerWithButton';
-import { API_URL, productsMock } from '@/constants';
+import { API_URL } from '@/constants';
 import { ProductProps } from '@/Types/Type';
 const getProducts = async () => {
   const products = await fetch(`${API_URL}/products`).then(res => res.json());

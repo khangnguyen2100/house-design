@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
-
-import './globals.css';
 import { ReactNode } from 'react';
+import './globals.css';
 
 import { CartContextProvider } from '@/contexts/Cart/CartContextProvider';
 
