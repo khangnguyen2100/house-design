@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { BsCartX } from 'react-icons/bs';
 import Link from 'next/link';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import Button from '@/components/common/Button/Button';
 import { useCartContext } from '@/contexts/Cart/CartContextProvider';
 import { formatPrice } from '@/utils/product';
 import { OrderInputProps } from '@/Types/Type';
 import { createOrder } from '@/services/orderServices';
-
 function CheckOut() {
   const { cartState, resetCart } = useCartContext();
   const router = useRouter();
@@ -50,6 +51,9 @@ function CheckOut() {
       const result = await createOrder(data);
       if (result.status === 201) {
         enqueueSnackbar('Đặt hàng thành công', { variant: 'success' });
+        enqueueSnackbar('Sẽ có người điện xác nhận đơn hàng ', {
+          variant: 'info',
+        });
         resetCart();
         router.push('/products');
       } else {
@@ -59,6 +63,29 @@ function CheckOut() {
       console.log(error);
     }
   };
+  const formik = useFormik({
+    initialValues: {
+      customerName: '',
+      phoneNumber: '',
+      email: '',
+      address: '',
+    },
+    validationSchema: Yup.object({
+      customerName: Yup.string().required('Vui lòng nhập họ và tên'),
+      email: Yup.string()
+        .email('Vui lòng nhập đúng định dạng email')
+        .required('Vui lòng nhập email'),
+      address: Yup.string().required('Vui lòng nhập địa chỉ'),
+      phoneNumber: Yup.number()
+        .required('Vui lòng nhập số điện thoại')
+        .min(10, 'Số điện thoại không thể ít hơn 10 số'),
+    }),
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+  console.log(formik);
+
   return (
     <>
       {cartState.items.length > 0 ? (
@@ -72,10 +99,16 @@ function CheckOut() {
               <input
                 ref={nameRef}
                 type='text'
-                name='name'
-                id='name'
+                name='customerName'
+                id='customerName'
                 className='h-10 rounded-sm border border-black text-lg outline-none'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.customerName}
               />
+              {formik.touched.customerName && formik.errors.customerName && (
+                <p className='text-red-500'>{formik.errors.customerName}</p>
+              )}
               <label htmlFor='phoneNumber' className='text-base font-semibold'>
                 Số điện thoại*
               </label>
@@ -84,8 +117,14 @@ function CheckOut() {
                 type='text'
                 name='phoneNumber'
                 id='phoneNumber'
-                className='h-10 rounded-sm border border-black text-lg outline-none'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.phoneNumber}
+                className='h-10 rounded-sm border border-black py-1 text-lg outline-none'
               />
+              {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                <p className='text-red-500'>{formik.errors.phoneNumber}</p>
+              )}
               <label htmlFor='email' className='text-base font-semibold'>
                 Địa chỉ email*
               </label>
@@ -94,8 +133,14 @@ function CheckOut() {
                 type='email'
                 name='email'
                 id='email'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
                 className='h-10 rounded-sm border border-black text-lg outline-none'
               />
+              {formik.touched.email && formik.errors.email && (
+                <p className='text-red-500'>{formik.errors.email}</p>
+              )}
               <label htmlFor='address' className='text-base font-semibold'>
                 Địa chỉ giao hàng*
               </label>
@@ -104,8 +149,14 @@ function CheckOut() {
                 type='text'
                 name='address'
                 id='address'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.address}
                 className='h-10 rounded-sm border border-black text-lg outline-none'
               />
+              {formik.touched.address && formik.errors.address && (
+                <p className='text-red-500'>{formik.errors.address}</p>
+              )}
               <h3 className='text-xl'>Thông tin bổ sung</h3>
               <label htmlFor='note' className='text-base font-semibold'>
                 Ghi chú cho đơn hàng
@@ -114,7 +165,7 @@ function CheckOut() {
                 ref={noteRef}
                 name='note'
                 id='note'
-                className='text-md h-24 rounded-sm border border-black outline-none'
+                className='h-20 rounded-sm border border-black text-lg outline-none'
               ></textarea>
             </form>
             <div className='col-span-4 flex h-fit flex-col  gap-y-4 border border-black p-5'>
@@ -153,9 +204,21 @@ function CheckOut() {
               <Button
                 type='button'
                 text='Đặt hàng'
-                className='cursor-pointer bg-[#D26E4B] py-4 text-lg text-white'
+                className={`cursor-pointer rounded-sm ${
+                  Object.keys(formik.touched).length && formik.isValid
+                    ? ' bg-[#D26E4B]'
+                    : 'bg-slate-700'
+                }  py-4 text-lg text-white`}
                 onClick={handleCheckout}
+                isDisabled={
+                  Object.keys(formik.touched).length && formik.isValid
+                    ? false
+                    : true
+                }
               ></Button>
+              {!formik.isValid && (
+                <p className='text-red-500'>Vui lòng nhập đầy đủ thông tin</p>
+              )}
             </div>
           </div>
         </div>
