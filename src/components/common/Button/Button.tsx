@@ -12,10 +12,20 @@ type Props = {
   children?: React.ReactNode;
   text: string;
   href?: Url; // Sửa kiểu dữ liệu của href
+  isDisabled?: boolean;
 };
 
 function Button(props: Props) {
-  const { onClick, type, children, bgColor, className, text, href } = props;
+  const {
+    onClick,
+    type,
+    children,
+    bgColor,
+    className,
+    text,
+    href,
+    isDisabled = false,
+  } = props;
 
   // Nếu có giá trị href thì bọc thẻ Link vào, còn không thì sử dụng fragment <>
   const content = href ? (
@@ -27,7 +37,12 @@ function Button(props: Props) {
     </Link>
   ) : (
     <>
-      <button type={type} className={`${className}`} onClick={onClick}>
+      <button
+        type={type}
+        className={`${className}`}
+        onClick={onClick}
+        disabled={isDisabled}
+      >
         {text}
         {children}
       </button>

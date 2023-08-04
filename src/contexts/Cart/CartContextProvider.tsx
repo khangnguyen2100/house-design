@@ -71,7 +71,7 @@ const CartContextProvider = ({ children }: Props) => {
       {children}
     </CartContext.Provider>
   );
-};
+}
 const useCartContext = () => {
   const context = useContext(CartContext);
   if (typeof context === 'undefined')

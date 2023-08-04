@@ -19,6 +19,8 @@ const orderSchema = new Schema(
         values: ['pending', 'delivery', 'success', 'cancel'],
       },
     },
+    customerName: String,
+    email: String,
     address: String,
     phoneNumber: Number,
     note: String,

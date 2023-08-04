@@ -11,8 +11,8 @@ export const NextAuthProvider = ({ children }: Props) => {
   return (
     <SessionProvider>
       <SnackbarProvider
-        maxSnack={3}
-        autoHideDuration={3000}
+        maxSnack={5}
+        autoHideDuration={5000}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         {children}
