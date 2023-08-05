@@ -8,8 +8,10 @@ import Category from 'lib/schema/category';
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { id } = params;
   await connectDb();
-  const result = await Product.findById(id);
-  const categoryInfo = await Category.findById(result.category);
+  const result = await Product.findById(id).populate({
+    path: 'category',
+    model: Category,
+  });
   if (!result) {
     return NextResponse.json(
       {
@@ -18,10 +20,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
       { status: 404 },
     );
   }
-  return NextResponse.json({
-    ...result._doc,
-    category: categoryInfo,
-  });
+  return NextResponse.json(result);
 }
 
 // update product

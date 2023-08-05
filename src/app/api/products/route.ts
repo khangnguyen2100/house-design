@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 import connectDb from 'lib/config/db';
-import Product from 'lib/schema/product';
 import Category from 'lib/schema/category';
+import Product from 'lib/schema/product';
 
 // create a new product
 export async function POST(request: Request) {
@@ -21,16 +21,9 @@ export async function POST(request: Request) {
 // get all products
 export async function GET() {
   await connectDb();
-  const products = await Product.find({}).sort({ createdAt: -1 });
-  const getCategoryInfo = await Promise.all(
-    products.map(async product => {
-      const categoryInfo = await Category.findById(product.category);
-      return {
-        ...product._doc,
-        category: categoryInfo,
-      };
-    }),
-  );
+  const products = await Product.find({})
+    .sort({ createdAt: -1 })
+    .populate({ path: 'category', model: Category });
 
-  return NextResponse.json(getCategoryInfo);
+  return NextResponse.json(products);
 }

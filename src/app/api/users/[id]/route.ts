@@ -25,7 +25,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   }, 0);
   return NextResponse.json({
     ...user._doc,
-    totalOrder: orderInfo,
+    totalOrders: orderInfo.length,
     totalOrderPrice,
   });
 }
@@ -36,7 +36,6 @@ export async function POST(
 ) {
   const { id } = params;
   const user = await User.findById(id);
-  console.log('user:', user);
   if (!user) {
     return NextResponse.json(
       {
@@ -47,7 +46,6 @@ export async function POST(
   }
 
   const type = request.nextUrl.searchParams.get('type');
-  console.log('type:', type);
   // update status
   if (type === 'change-status') {
     await User.findByIdAndUpdate(id, {
@@ -63,7 +61,7 @@ export async function POST(
   // update role
   if (type === 'change-role') {
     await User.findByIdAndUpdate(id, {
-      status: user.role === 'admin' ? 'user' : 'admin',
+      role: user.role === 'admin' ? 'user' : 'admin',
     });
     return NextResponse.json({
       message:

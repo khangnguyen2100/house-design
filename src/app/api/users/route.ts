@@ -18,7 +18,7 @@ export async function GET() {
       }, 0);
       return {
         ...user._doc,
-        totalOrder: orderInfo,
+        totalOrders: orderInfo.length,
         totalOrderPrice,
       };
     }),

@@ -25,7 +25,10 @@ const initCartState: CartState = {
   totalPay: 0,
   totalQuantity: 0,
 };
-
+const getInitialCart = (): CartState => {
+  const cart = window.localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : initCartState;
+};
 const CartContextProvider = ({ children }: Props) => {
   const [cartState, dispatch] = useReducer(CartReducer, initCartState);
   useEffect(() => {

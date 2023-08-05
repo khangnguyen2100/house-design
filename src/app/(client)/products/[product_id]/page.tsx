@@ -29,7 +29,6 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PropsType) {
   const productData = await getProductById(params.product_id);
-  console.log('productData:', productData);
   const relatedProducts = await getProductsInCategory(productData.category._id);
 
   return (
