@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use client';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
 
 import { ProductProps } from '@/Types/Type';
 
@@ -25,13 +25,22 @@ const initCartState: CartState = {
   totalPay: 0,
   totalQuantity: 0,
 };
-const getInitialCart = (): CartState => {
-  const cart = window.localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : initCartState;
-};
-const CartContextProvider = ({ children }: Props) => {
-  const [cartState, dispatch] = useReducer(CartReducer, getInitialCart());
 
+const CartContextProvider = ({ children }: Props) => {
+  const [cartState, dispatch] = useReducer(CartReducer, initCartState);
+  useEffect(() => {
+    const cart = window && window.localStorage.getItem('cart');
+    if (cart) {
+      dispatch({
+        type: 'INIT_CART',
+        payload: JSON.parse(cart),
+      });
+    } else
+      dispatch({
+        type: 'INIT_CART',
+        payload: initCartState,
+      });
+  }, []);
   const addToCart = (newProduct: ProductProps) => {
     dispatch({
       type: 'ADD_TO_CART',
@@ -71,7 +80,7 @@ const CartContextProvider = ({ children }: Props) => {
       {children}
     </CartContext.Provider>
   );
-}
+};
 const useCartContext = () => {
   const context = useContext(CartContext);
   if (typeof context === 'undefined')
