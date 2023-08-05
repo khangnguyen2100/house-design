@@ -34,7 +34,9 @@ export const authOptions = {
         const user = await User.findOne({ email: credentials.email }).select(
           '+password',
         );
-
+        if (user.status === 'block') {
+          throw new Error('Tài khoản đã bị khóa!');
+        }
         if (!user) {
           throw new Error('No user with a matching email was found.');
         }
@@ -56,8 +58,6 @@ export const authOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log('session:', session);
-      console.log('session token:', token);
       return {
         ...session,
         user: {
@@ -70,8 +70,6 @@ export const authOptions = {
       };
     },
     jwt: ({ token, user }) => {
-      console.log('jwt user:', user);
-      console.log('jwt token:', token);
       if (user) {
         return {
           ...token,
