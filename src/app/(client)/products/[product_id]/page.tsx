@@ -32,7 +32,7 @@ export default async function Page({ params }: PropsType) {
   const relatedProducts = await getProductsInCategory(productData.category._id);
 
   return (
-    <div className='flex w-full max-w-large justify-center px-4'>
+    <div className='mx-auto flex w-full max-w-large justify-center px-4'>
       {productData ? (
         <section className='mt-5 flex flex-col'>
           <ProductDetail {...productData} />

@@ -8,15 +8,20 @@ import TopCards from 'components/admin/TopCards';
 export const metadata: Metadata = {
   title: 'Admin',
 };
-
-export default function Index() {
+const getAnalyticsOrderData = async () => {
+  const request = await fetch('http://localhost:3000/api/analytics/order');
+  const data = await request.json();
+  return data;
+};
+export default async function Index() {
+  const data = await getAnalyticsOrderData();
   return (
     <>
       <Header />
-      <TopCards />
+      <TopCards data={data} />
       <div className='grid grid-cols-1 gap-4 p-4 md:grid-cols-3'>
         <BarChart />
-        <RecentOrders />
+        <RecentOrders data={data} />
       </div>
     </>
   );

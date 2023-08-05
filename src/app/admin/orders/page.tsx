@@ -1,4 +1,5 @@
 import momment from 'moment';
+import 'moment/locale/vi';
 import { FaShoppingBag } from 'react-icons/fa';
 
 import { getAllOrders } from '@/services/orderServices';
@@ -64,10 +65,9 @@ const orders = async () => {
                 </div>
                 <div className='col-span-1'>
                   <p>
-                    {momment(
-                      order.createdAt,
-                      'YYYY-MM-DDThh:mm:ssTZD',
-                    ).fromNow()}
+                    {momment(order.createdAt, 'YYYY-MM-DDThh:mm:ssTZD')
+                      .locale('vi')
+                      .fromNow()}
                   </p>
                 </div>
                 <div className='col-span-1'>
