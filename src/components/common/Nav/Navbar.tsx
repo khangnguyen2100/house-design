@@ -35,6 +35,7 @@ function Nav() {
   };
   const handleLogout = () => {
     signOut();
+    window.localStorage.removeItem('cart');
     handleCloseUserMenu();
     router.push('/');
     enqueueSnackbar('Đăng xuất thành công', {
