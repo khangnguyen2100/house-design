@@ -26,6 +26,7 @@ const initCartState: CartState = {
   totalQuantity: 0,
 };
 const getInitialCart = (): CartState => {
+  if (typeof window === 'undefined') return initCartState;
   const cart = window.localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : initCartState;
 };
