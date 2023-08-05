@@ -2,6 +2,7 @@ import { calculateTotalPay, calculateTotalQuantity } from '@/utils/cart';
 import { ProductProps } from '@/Types/Type';
 
 import { CartProduct } from './CartContextProvider';
+
 interface InitCartAcion {
   type: 'INIT_CART';
   payload: CartState;
