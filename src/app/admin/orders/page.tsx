@@ -4,6 +4,9 @@ import { FaShoppingBag } from 'react-icons/fa';
 import { getAllOrders } from '@/services/orderServices';
 import { OrderProps } from '@/Types/Type';
 import { formatPrice } from '@/utils/product';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+
 const orders = async () => {
   const ordersData: OrderProps[] = await getAllOrders();
 

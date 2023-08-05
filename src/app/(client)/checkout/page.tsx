@@ -22,6 +22,8 @@ function CheckOut() {
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLInputElement>(null);
+  console.log('session:', session)
+
   const handleCheckout = async () => {
     // check login
     if (!session.data?.user) {
@@ -84,7 +86,6 @@ function CheckOut() {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  console.log(formik);
 
   return (
     <>

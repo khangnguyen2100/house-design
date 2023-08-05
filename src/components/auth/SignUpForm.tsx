@@ -74,7 +74,6 @@ const SignUpForm: React.FC = () => {
         address: enteredAddress,
       };
       const result = await createUser(input);
-      console.log('result:', result);
       if (result?.user) {
         enqueueSnackbar(
           `Đăng ký tài khoản ${result?.user?.email} thành công!`,

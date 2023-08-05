@@ -1,5 +1,6 @@
 'use client';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
@@ -54,6 +55,25 @@ export default function LogIn() {
     }
     setLoading(false);
   };
+  const handleLoginWithGoogle = async () => {
+    try {
+      const result = await signIn('google', {
+        redirect: false,
+        callbackUrl: callbackUrl || '/',
+      });
+
+      if (result && result.error) {
+        throw new Error(result.error);
+      }
+
+      if (result && !result.error) {
+        router.push(result.url || '/');
+        enqueueSnackbar('Đăng nhập thành công!', { variant: 'success' });
+      }
+    } catch (error: any) {
+      enqueueSnackbar(error.message as string, { variant: 'error' });
+    }
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -99,6 +119,15 @@ export default function LogIn() {
           >
             Đăng nhập
           </LoadingButton>
+          <Button
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleLoginWithGoogle}
+            color='secondary'
+          >
+            Đăng nhập với Google
+          </Button>
           <Grid container justifyContent='flex-end'>
             {/* <Grid item xs>
               <Link href='#' variant='body2'>
@@ -107,7 +136,7 @@ export default function LogIn() {
             </Grid> */}
             <Grid item>
               <Link href='/sign-up' variant='body2'>
-                {"Don't have an account? Sign Up"}
+                {'Đăng ký tài khoản'}
               </Link>
             </Grid>
           </Grid>

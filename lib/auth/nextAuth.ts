@@ -1,6 +1,7 @@
 import { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 
 import connectDb from 'lib/config/db';
 import User from 'lib/schema/user';
@@ -10,6 +11,10 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID || '',
       clientSecret: process.env.GITHUB_SECRET_ID || '',
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_SECRET_ID || '',
     }),
     CredentialsProvider({
       name: 'Sign in',
@@ -51,6 +56,8 @@ export const authOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
+      console.log('session:', session);
+      console.log('session token:', token);
       return {
         ...session,
         user: {
@@ -63,6 +70,8 @@ export const authOptions = {
       };
     },
     jwt: ({ token, user }) => {
+      console.log('jwt user:', user);
+      console.log('jwt token:', token);
       if (user) {
         return {
           ...token,
@@ -71,6 +80,44 @@ export const authOptions = {
         } as Session;
       }
       return token;
+    },
+    async signIn({ account, profile }: { account: any; profile: any }) {
+      if (account.provider === 'google') {
+        if (!account) {
+          throw new Error('No account found');
+        }
+        if (!profile) {
+          throw new Error('No profile found');
+        }
+
+        if (!profile.email_verified) {
+          throw new Error('Tài khoản chưa được xác thực');
+        }
+        connectDb();
+        // Try to find the user and also return the password field
+        const user = await User.findOne({ email: profile.email });
+        if (user) {
+          console.log('signIn user:', user);
+          return {
+            ...user,
+            id: user._id,
+          };
+        }
+        // create new user
+        const newUser = await User.create({
+          name: profile.name,
+          email: profile.email,
+          avatar: profile.picture,
+          password: profile.sub,
+          role: 'user',
+        });
+        return {
+          ...newUser,
+          id: newUser._id,
+          accessToken: account.access_token,
+        };
+      }
+      return true;
     },
   },
   pages: {

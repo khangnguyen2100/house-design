@@ -4,6 +4,8 @@ import { UserProps } from '@/Types/Type';
 import { getUsers } from '@/services/userServices';
 import CustomersMenu from '@/components/admin/Customers/CustomersMenu';
 import { formatPrice } from '@/utils/product';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 const customers = async () => {
   const userData = await getUsers();

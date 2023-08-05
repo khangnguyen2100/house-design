@@ -36,7 +36,6 @@ export async function POST(
 ) {
   const { id } = params;
   const user = await User.findById(id);
-  console.log('user:', user);
   if (!user) {
     return NextResponse.json(
       {
@@ -62,7 +61,7 @@ export async function POST(
   // update role
   if (type === 'change-role') {
     await User.findByIdAndUpdate(id, {
-      status: user.role === 'admin' ? 'user' : 'admin',
+      role: user.role === 'admin' ? 'user' : 'admin',
     });
     return NextResponse.json({
       message:
