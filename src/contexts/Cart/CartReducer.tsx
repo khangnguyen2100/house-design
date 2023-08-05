@@ -2,7 +2,10 @@ import { calculateTotalPay, calculateTotalQuantity } from '@/utils/cart';
 import { ProductProps } from '@/Types/Type';
 
 import { CartProduct } from './CartContextProvider';
-
+interface InitCartAcion {
+  type: 'INIT_CART';
+  payload: CartState;
+}
 interface AddToCartAction {
   type: 'ADD_TO_CART';
   payload: ProductProps;
@@ -10,7 +13,6 @@ interface AddToCartAction {
 interface ResetCartAction {
   type: 'RESET_CART';
 }
-// Action update quantity
 interface UpdateQuantityAction {
   type: 'UPDATE_QUANTITY';
   payload: {
@@ -19,16 +21,17 @@ interface UpdateQuantityAction {
   };
 }
 
-interface DeleteFromCart {
+interface DeleteFromCartAction {
   type: 'DELETE_FROM_CART';
   payload: {
     _id: string;
   };
 }
 type CartAction =
+  | InitCartAcion
   | AddToCartAction
   | UpdateQuantityAction
-  | DeleteFromCart
+  | DeleteFromCartAction
   | ResetCartAction;
 
 export type CartState = {
@@ -55,6 +58,9 @@ export default function CartReducer(
   let newCartProducts: CartProduct[] = [];
 
   switch (action.type) {
+    case 'INIT_CART': {
+      return action.payload;
+    }
     case 'ADD_TO_CART': {
       const isExisted = state.items.find(
         product => product._id === action.payload._id,
@@ -101,12 +107,7 @@ export default function CartReducer(
       return updateCartState(state, newCartProducts);
     }
     case 'RESET_CART': {
-      return {
-        ...state,
-        items: [],
-        totalPay: 0,
-        totalQuantity: 0,
-      };
+      return updateCartState(state, newCartProducts);
     }
     default:
       return state;
