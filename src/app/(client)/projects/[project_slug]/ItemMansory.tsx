@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { projectItem } from '@/Types/Type';
 
 const Item = (project: projectItem, index: number) => {
-
   return (
     <Link
       key={index}
