@@ -19,16 +19,13 @@ export async function generateMetadata({ params }: PropsType) {
   };
 }
 
-export async function generateStaticParams() {
-  const products = await getProducts();
-  return products.map((product: any) => ({
-    product_id: product._id,
-  }));
-}
-
 export default async function Page({ params }: PropsType) {
-  const productData = await getProductById(params.product_id);
-  const relatedProducts = await getProductsInCategory(productData.category._id);
+  const { product_id = null } = params;
+  if (!product_id) return <NotFound />;
+  const productData = await getProductById(product_id);
+  const relatedProducts = await getProductsInCategory(
+    productData?.category._id,
+  );
 
   return (
     <div className='mx-auto flex w-full max-w-large justify-center px-4'>

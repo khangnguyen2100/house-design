@@ -102,7 +102,7 @@ const ProductsList = (props: Props) => {
           )}
         {productsData.length === 0 && (
           <div className='mt-16 grid w-full place-items-center'>
-            <Empty description={'Không tìm thấy sản phẩm phù hợp'} />
+            <Empty description={'Không tìm thấy sản phẩm'} />
           </div>
         )}
       </Row>

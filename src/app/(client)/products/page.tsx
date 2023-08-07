@@ -1,19 +1,35 @@
+'use client';
 import ProductBanner from '/public/images/banner/product-banner.jpg';
 
+import { useEffect, useState } from 'react';
 import type { Metadata } from 'next';
 
 import Banner from 'components/common/Banner/Banner';
 import { getCategories, getProducts } from '@/utils/fetchAPI';
 import ProductsList from '@/components/Products/ProductsList';
+import { CategoryProps, ProductProps } from '@/Types/Type';
+
+import { Spin } from 'antd';
 
 export const metadata: Metadata = {
   title: 'Sản phẩm',
 };
-export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 
-const Products = async () => {
-  let products = await getProducts();
-  let categories = await getCategories();
+const Products = () => {
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
+  const getData = async () => {
+    const [products, categories] = await Promise.all([
+      getProducts(),
+      getCategories(),
+    ]);
+    setProducts(products);
+    setCategories(categories);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className='flex min-h-screen w-full flex-col items-center'>
       <Banner
@@ -22,7 +38,16 @@ const Products = async () => {
         height='large'
         overlay
       />
-      <ProductsList products={products} categories={categories} />
+      {products.length > 0 ? (
+        <ProductsList products={products} categories={categories} />
+      ) : (
+        <div
+          className='flex h-full w-full items-center justify-center'
+          style={{ minHeight: 'calc(100vh - 64px)' }}
+        >
+          <Spin size='large' />
+        </div>
+      )}
     </div>
   );
 };
