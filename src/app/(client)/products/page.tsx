@@ -2,7 +2,6 @@
 import ProductBanner from '/public/images/banner/product-banner.jpg';
 
 import { useEffect, useState } from 'react';
-import type { Metadata } from 'next';
 
 import Banner from 'components/common/Banner/Banner';
 import { getCategories, getProducts } from '@/utils/fetchAPI';
@@ -11,9 +10,6 @@ import { CategoryProps, ProductProps } from '@/Types/Type';
 
 import { Spin } from 'antd';
 
-export const metadata: Metadata = {
-  title: 'Sản phẩm',
-};
 export const dynamic = 'force-dynamic';
 
 const Products = () => {
