@@ -21,10 +21,9 @@ export async function generateMetadata({ params }: PropsType) {
 
 export async function generateStaticParams() {
   const products = await getProducts();
-  const paths = products.map((product: any) => ({
-    params: { product_id: product._id },
+  return products.map((product: any) => ({
+    product_id: product._id,
   }));
-  return paths;
 }
 
 export default async function Page({ params }: PropsType) {
