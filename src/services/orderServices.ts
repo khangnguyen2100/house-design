@@ -1,8 +1,7 @@
 import { OrderInputProps } from '@/Types/Type';
-import { API_URL } from '@/constants';
 
 const createOrder = async (data: OrderInputProps) => {
-  const response = await fetch(`${API_URL}/order`, {
+  const response = await fetch(`/api/order`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -12,11 +11,11 @@ const createOrder = async (data: OrderInputProps) => {
   return await response.json();
 };
 const getAllOrders = async () => {
-  const response = await fetch(`${API_URL}/order`);
+  const response = await fetch(`/api/order`);
   return await response.json();
 };
 const getOrderById = async (id: string) => {
-  const response = await fetch(`${API_URL}/order/${id}`);
+  const response = await fetch(`/api/order/${id}`);
   return await response.json();
 };
 

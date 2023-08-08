@@ -421,5 +421,3 @@ export const userData = [
     date: '1 Day ago',
   },
 ];
-
-export const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';

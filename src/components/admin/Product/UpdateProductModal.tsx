@@ -17,7 +17,6 @@ import { enqueueSnackbar } from 'notistack';
 import { FormEvent, useEffect, useState } from 'react';
 import isURL from 'validator/lib/isURL';
 
-import { API_URL } from '@/constants';
 import { CategoryProps, ProductProps } from '@/Types/Type';
 
 interface Props {
@@ -76,7 +75,7 @@ const UpdateProductModal = (props: Props) => {
     }
     try {
       // send request
-      const res = await fetch(`${API_URL}/products/${productId}`, {
+      const res = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +105,7 @@ const UpdateProductModal = (props: Props) => {
   };
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`${API_URL}/products/${productId}`);
+      const res = await fetch(`/api/products/${productId}`);
       if (!res.ok) {
         throw new Error('Lỗi');
       }

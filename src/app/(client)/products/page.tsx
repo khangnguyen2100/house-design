@@ -4,7 +4,8 @@ import ProductBanner from '/public/images/banner/product-banner.jpg';
 import { useEffect, useState } from 'react';
 
 import Banner from 'components/common/Banner/Banner';
-import { getCategories, getProducts } from '@/utils/fetchAPI';
+import { getProducts } from '@/services/productServices';
+import { getCategories } from '@/services/categoryServices';
 import ProductsList from '@/components/Products/ProductsList';
 import { CategoryProps, ProductProps } from '@/Types/Type';
 

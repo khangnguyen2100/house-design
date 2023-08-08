@@ -6,7 +6,6 @@ import { enqueueSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-import { API_URL } from '@/constants';
 import { UserProps } from '@/Types/Type';
 
 interface Props {
@@ -36,7 +35,7 @@ const CustomersMenu = ({ userData }: Props) => {
         variant: 'error',
       });
     const request = await fetch(
-      `${API_URL}/users/${userData._id}?type=change-status`,
+      `/api/users/${userData._id}?type=change-status`,
       {
         method: 'POST',
       },
@@ -59,12 +58,9 @@ const CustomersMenu = ({ userData }: Props) => {
         variant: 'error',
       });
     }
-    const request = await fetch(
-      `${API_URL}/users/${userData._id}?type=change-role`,
-      {
-        method: 'POST',
-      },
-    );
+    const request = await fetch(`/api/users/${userData._id}?type=change-role`, {
+      method: 'POST',
+    });
     const data = await request.json();
     if (request.ok) {
       router.refresh();

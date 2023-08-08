@@ -19,7 +19,6 @@ import { FormEvent, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import isURL from 'validator/lib/isURL';
 
-import { API_URL } from '@/constants';
 import { CategoryProps } from '@/Types/Type';
 
 interface Props {
@@ -81,7 +80,7 @@ const AddProductModal = ({ categories }: Props) => {
 
     try {
       // send request
-      const res = await fetch(`${API_URL}/products`, {
+      const res = await fetch(`/api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import { CategoryProps } from '@/Types/Type';
-import { API_URL } from '@/constants';
 import useConfirm from '@/hooks/useConfirm';
 
 import UpdateProductModal from './UpdateProductModal';
@@ -41,7 +40,7 @@ const ProductMenu = ({ productId, categories }: Props) => {
   const onDelete = async () => {
     const result = await confirmResult();
     if (result) {
-      const response = await fetch(`${API_URL}/products/${productId}`, {
+      const response = await fetch(`/api/products/${productId}`, {
         method: 'DELETE',
         next: {
           tags: ['products', 'categories'],
